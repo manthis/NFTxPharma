@@ -4,9 +4,7 @@ on: [push, pull_request]
 jobs:
     analyze:
         runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            security-events: write
+        permissions: write-all
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
