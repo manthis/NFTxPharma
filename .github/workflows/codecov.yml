@@ -21,10 +21,12 @@ jobs:
                   yarn hardhat coverage
 
             - name: Upload coverage reports to Codecov
-              uses: codecov/codecov-action@v4.0.1
+              uses: codecov/codecov-action@v4
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
-                  directory: backend/coverage
+                  working-directory: backend/
+                  directory: ./coverage
                   flags: backend # Facultatif: Ajoute des flags pour différencier les rapports d'environnement
                   fail_ci_if_error: true # Facultatif: Le CI échouera si l'envoi échoue
                   verbose: true
+                  name: codecov-umbrella
