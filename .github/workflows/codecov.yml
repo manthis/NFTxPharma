@@ -5,10 +5,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v4
 
             - name: Install dependencies
               run: |
@@ -27,4 +27,4 @@ jobs:
                   directory: backend/coverage
                   flags: backend # Facultatif: Ajoute des flags pour différencier les rapports d'environnement
                   fail_ci_if_error: true # Facultatif: Le CI échouera si l'envoi échoue
-                  verbose: false
+                  verbose: true
