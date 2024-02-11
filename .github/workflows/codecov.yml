@@ -27,4 +27,4 @@ jobs:
                   directory: backend/coverage
                   flags: backend # Facultatif: Ajoute des flags pour différencier les rapports d'environnement
                   fail_ci_if_error: true # Facultatif: Le CI échouera si l'envoi échoue
-                  verbose: false
+                  verbose: true
