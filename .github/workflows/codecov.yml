@@ -5,10 +5,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v2
 
             - name: Set up Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v2
 
             - name: Install dependencies
               run: |
@@ -21,7 +21,7 @@ jobs:
                   yarn hardhat coverage
 
             - name: Upload coverage reports to Codecov
-              uses: codecov/codecov-action@v4
+              uses: codecov/codecov-action@v4.0.1
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   working-directory: backend/
