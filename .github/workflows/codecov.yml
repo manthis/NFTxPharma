@@ -24,4 +24,8 @@ jobs:
               uses: codecov/codecov-action@v4.0.1
               env:
                   token: ${{ secrets.CODECOV_TOKEN }}
-                  slug: manthis/alyra-certification
+                  directory: backend/coverage
+                  slug: manthis/alyra-certification/backend
+                  flags: backend # Facultatif: Ajoute des flags pour différencier les rapports d'environnement
+                  fail_ci_if_error: true # Facultatif: Le CI échouera si l'envoi échoue
+                  verbose: true
