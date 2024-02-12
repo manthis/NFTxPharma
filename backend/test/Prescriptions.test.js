@@ -232,7 +232,7 @@ describe('Prescriptions', function () {
         });
 
         it('should return the correct tokenURI for a provided existing tokenId', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
             await contract
                 .connect(addrs[1])
                 .mintPrescription(
