@@ -100,6 +100,23 @@ describe('Prescriptions', function () {
                 );
             expect(await contract.tokenId_()).to.equal(2);
         });
+
+        it('should send the Prescription NFT to the patient', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            expect(await contract.ownerOf(0)).to.equal(patient.address);
+        });
     });
 
     describe('transferToPharmacy', function () {
@@ -217,6 +234,33 @@ describe('Prescriptions', function () {
             } catch (error) {
                 assert.include(error.message, 'Transaction did not revert');
             }
+        });
+
+        it('should have transferred the prescription to the pharmacy', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const pharmacy = addrs[13];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            await contract
+                .connect(patient)
+                .transferToPharmacy(
+                    getPatientsTreeProof(patient.address),
+                    pharmacy,
+                    getPharmaciesTreeProof(pharmacy.address),
+                    0,
+                );
+
+            expect(await contract.ownerOf(0)).to.equal(pharmacy.address);
         });
     });
 
