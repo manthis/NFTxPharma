@@ -5,6 +5,8 @@ const {
     getDoctorsTreeProof,
     getPatientsHexMerkleRoot,
     getPatientsTreeProof,
+    getPharmaciesHexMerkleRoot,
+    getPharmaciesTreeProof,
 } = require('./whitelists/merkletrees');
 
 describe('Prescriptions', function () {
@@ -15,6 +17,7 @@ describe('Prescriptions', function () {
             'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/',
             getDoctorsHexMerkleRoot(),
             getPatientsHexMerkleRoot(),
+            getPharmaciesHexMerkleRoot(),
         );
 
         return { contract: prescriptionsContract, owner, addrs };
@@ -96,6 +99,124 @@ describe('Prescriptions', function () {
                     getPatientsTreeProof(addrs[7].address),
                 );
             expect(await contract.tokenId_()).to.equal(2);
+        });
+    });
+
+    describe('transferToPharmacy', function () {
+        it('should be forbidden for a non patient', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            try {
+                await contract.transferToPharmacy(
+                    getPatientsTreeProof(patient.address),
+                    doctor.address,
+                    getPharmaciesTreeProof(doctor.address),
+                    0,
+                );
+                assert.fail('Transaction did not revert');
+            } catch (error) {
+                assert.include(error.message, 'Only patients can transfer prescriptions!');
+            }
+        });
+
+        it('should not be able to transfer to 0x0 address', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const addressZero = '0x0000000000000000000000000000000000000000';
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            expect(
+                contract
+                    .connect(patient)
+                    .transferToPharmacy(
+                        getPatientsTreeProof(patient.address),
+                        addressZero,
+                        getPharmaciesTreeProof(addressZero),
+                        0,
+                    ),
+            )
+                .to.be.revertedWithCustomError(contract, 'ERC721InvalidReceiver')
+                .withArgs('0x0000000000000000000000000000000000000000');
+        });
+
+        it('should only be able to transfer to a pharmacy', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const addressZero = '0x0000000000000000000000000000000000000000';
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            try {
+                await contract
+                    .connect(patient)
+                    .transferToPharmacy(
+                        getPatientsTreeProof(patient.address),
+                        owner.address,
+                        getPharmaciesTreeProof(owner.address),
+                        0,
+                    );
+                assert.fail('Transaction did not revert');
+            } catch (error) {
+                assert.include(error.message, 'Patients can only transfer presciptions to pharmacies!');
+            }
+        });
+
+        it('should not revert when transferring from a patient to a pharmacy', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const pharmacy = addrs[13];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            try {
+                await contract
+                    .connect(patient)
+                    .transferToPharmacy(
+                        getPatientsTreeProof(patient.address),
+                        pharmacy,
+                        getPharmaciesTreeProof(pharmacy.address),
+                        0,
+                    );
+                assert.fail('Transaction did not revert');
+            } catch (error) {
+                assert.include(error.message, 'Transaction did not revert');
+            }
         });
     });
 
@@ -195,6 +316,28 @@ describe('Prescriptions', function () {
 
             try {
                 await contract.isApprovedForAll(owner.address, owner.address);
+                assert.fail('Transaction did not revert');
+            } catch (error) {
+                assert.include(error.message, 'Not implemented in Prescriptions');
+            }
+        });
+
+        it('should revert when calling "transferFrom"', async function () {
+            const { contract, owner } = await loadFixture(deployContractFixture);
+
+            try {
+                await contract.transferFrom(owner.address, owner.address, 1);
+                assert.fail('Transaction did not revert');
+            } catch (error) {
+                assert.include(error.message, 'Not implemented in Prescriptions');
+            }
+        });
+
+        it('should revert when calling "safeTransferFrom"', async function () {
+            const { contract, owner } = await loadFixture(deployContractFixture);
+
+            try {
+                await contract.safeTransferFrom(owner.address, owner.address, 1);
                 assert.fail('Transaction did not revert');
             } catch (error) {
                 assert.include(error.message, 'Not implemented in Prescriptions');

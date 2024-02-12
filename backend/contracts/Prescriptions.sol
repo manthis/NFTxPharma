@@ -9,6 +9,10 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 import "./Doctor.sol";
 import "./Patient.sol";
+import "./Pharmacy.sol";
+
+// TODO add events
+// TODO add comments (natspec)
 
 
 /// @custom:security-contact maxime@auburt.in
@@ -18,14 +22,16 @@ contract Prescriptions is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
     Doctor private doctors_;
     Patient private patients_;
+    Pharmacy private pharmacies_;
 
     uint256 public tokenId_;
     string private baseURI_;
 
-    constructor(string memory baseURI, bytes32 doctorsMerkleTree, bytes32 patientsMerkleTree) ERC721("Prescriptions", "PNFT") Ownable(msg.sender)
+    constructor(string memory baseURI, bytes32 doctorsMerkleTree, bytes32 patientsMerkleTree, bytes32 pharmaciesMerkleTree) ERC721("Prescriptions", "PNFT") Ownable(msg.sender)
     {
         doctors_ = new Doctor(doctorsMerkleTree);
         patients_ = new Patient(patientsMerkleTree);
+        pharmacies_ = new Pharmacy(pharmaciesMerkleTree);
         baseURI_ = baseURI;
     }
 
@@ -49,12 +55,20 @@ contract Prescriptions is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     }
 
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
-        //TODO check if token exists before returning its URI
         require(tokenId < tokenId_, 'Token does not exist!');
         return super.tokenURI(tokenId);
     }
 
-    // TODO we need to override transfer possibly. Double check
+    function transferToPharmacy(bytes32[] calldata patientsProof, address to, bytes32[] calldata pharmarciesProof, uint256 tokenId) public {
+        require(patients_.isPatient(msg.sender, patientsProof), 'Only patients can transfer prescriptions!');
+        if (to == address(0)) {
+            revert ERC721InvalidReceiver(address(0));
+        }
+        require(pharmacies_.isPharmacy(to, pharmarciesProof), 'Patients can only transfer presciptions to pharmacies!');
+
+        // We perform the transfer 
+        _update(to, tokenId, _msgSender());
+    }
 
     // The following function is an override required by Solidity.
 
@@ -65,7 +79,11 @@ contract Prescriptions is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
     // Disabled features for this ERC721
 
-    function approve(address, uint256) pure override(ERC721, IERC721) public {
+    function transferFrom(address, address, uint256) override(ERC721, IERC721) pure public {
+        revert('Not implemented in Prescriptions');
+    }
+
+    function approve(address, uint256) override(ERC721, IERC721) pure public {
         revert('Not implemented in Prescriptions');
     }
 
