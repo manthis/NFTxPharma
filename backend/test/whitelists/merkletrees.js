@@ -1,9 +1,9 @@
 const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-const doctorsWhitelist = require('./whitelists/doctors.json');
-const patientsWhitelist = require('./whitelists/patients.json');
-const pharmaciesWhitelist = require('./whitelists/pharmacies.json');
+const doctorsWhitelist = require('./doctors.json');
+const patientsWhitelist = require('./patients.json');
+const pharmaciesWhitelist = require('./pharmacies.json');
 
 const _buildMerkleTreeFromArray = (_arrayOfAddresses) => {
     const leaves = _arrayOfAddresses.map((address) => {

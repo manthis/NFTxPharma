@@ -5,51 +5,79 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
+
+import "./Doctor.sol";
+import "./Patient.sol";
 
 
 /// @custom:security-contact maxime@auburt.in
 contract Prescriptions is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
-    uint256 private _nextTokenId;
 
-    // TODO We must override principal transfer method (transferFrom)
-    // TODO We must restrict the use of transfer function (safeTransferFrom) from patient to pharmacies
-    // TODO We must ensure we can only transfer this type of token to pharmacies (maybe the opposite too)
-    // TODO We must restrict access to owner only to all approval methods (approve)
+    using Strings for uint;
 
-    constructor()
-        ERC721("Prescriptions", "PNFT")
-        Ownable(msg.sender)
-    {}
+    Doctor private doctors_;
+    Patient private patients_;
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://nftstorage.link/ipfs/";
-    }
+    uint256 public tokenId_;
+    string private baseURI_;
 
-    // TODO create a modifier to check if the caller is a doctor and replace onlyOwner
-    // TODO ensure "to" address is a valid patient 
-    function safeMint(address to, string memory uri) public onlyOwner {
-        uint256 tokenId = _nextTokenId++;
-        _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
-    }
-
-    // The following functions are overrides required by Solidity.
-
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
+    constructor(string memory baseURI, bytes32 doctorsMerkleTree, bytes32 patientsMerkleTree) ERC721("Prescriptions", "PNFT") Ownable(msg.sender)
     {
+        doctors_ = new Doctor(doctorsMerkleTree);
+        patients_ = new Patient(patientsMerkleTree);
+        baseURI_ = baseURI;
+    }
+
+    function setBaseURI(string calldata baseURI) external onlyOwner {
+        baseURI_ = baseURI;
+    }
+
+    function getBaseURI() external view returns(string memory) {
+        return baseURI_;
+    }
+
+    function mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof) public {
+        require(doctors_.isDoctor(msg.sender, doctorsProof), 'Only doctors are allowed to mint prescriptions!');
+        require(patients_.isPatient(to, patientsProof), 'Only patients can receive prescriptions!');
+        
+        _safeMint(to, tokenId_);
+
+        string memory tmp = string(abi.encodePacked(baseURI_, tokenId_.toString(), ".json"));
+        _setTokenURI(tokenId_, tmp);
+        tokenId_ += 1;
+    }
+
+    function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
+        //TODO check if token exists before returning its URI
+        require(tokenId < tokenId_, 'Token does not exist!');
         return super.tokenURI(tokenId);
     }
 
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (bool)
+    // TODO we need to override transfer possibly. Double check
+
+    // The following function is an override required by Solidity.
+
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    // Disabled features for this ERC721
+
+    function approve(address, uint256) pure override(ERC721, IERC721) public {
+        revert('Not implemented in Prescriptions');
+    }
+
+    function getApproved(uint256) override(ERC721, IERC721) pure public returns (address) {
+        revert('Not implemented in Prescriptions');
+    }
+
+    function setApprovalForAll(address, bool) override(ERC721, IERC721) pure public {
+        revert('Not implemented in Prescriptions');
+    }
+
+    function isApprovedForAll(address, address) override(ERC721, IERC721) pure public returns (bool) {
+        revert('Not implemented in Prescriptions');
     }
 }

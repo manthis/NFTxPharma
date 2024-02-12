@@ -2,15 +2,23 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./Entity.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 // @custom:security-contact maxime@auburt.in
-contract Doctor is Entity, Ownable {
+contract Doctor is Ownable {
 
-    constructor(bytes32 merkleRoot_) Entity(merkleRoot_) Ownable(msg.sender) {}
+    bytes32 public doctorsHexMerkleRoot_;
 
-    function setMerkleRoot(bytes32 merkleRoot_) public override onlyOwner {
-        super.setMerkleRoot(merkleRoot_);
+    constructor(bytes32 doctorsHexMerkleRoot) Ownable(msg.sender)  {
+        doctorsHexMerkleRoot_ = doctorsHexMerkleRoot;
+    }
+
+    function setDoctorsMerkleRoot(bytes32 doctorsHexMerkleRoot) public virtual  {
+        doctorsHexMerkleRoot_ = doctorsHexMerkleRoot;
+    }
+
+    function isDoctor(address account, bytes32[] calldata proof) public view returns(bool) {
+        return MerkleProof.verify(proof, doctorsHexMerkleRoot_, keccak256(abi.encodePacked(account)));
     }
 
 }

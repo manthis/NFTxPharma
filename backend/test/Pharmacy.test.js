@@ -1,6 +1,6 @@
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const { expect } = require('chai');
-const { getPharmaciesHexMerkleRoot, getPharmaciesTreeProof } = require('./merkletrees');
+const { getPharmaciesHexMerkleRoot, getPharmaciesTreeProof } = require('./whitelists/merkletrees');
 
 describe('Pharmacy', function () {
     async function deployContractFixture() {
@@ -20,7 +20,7 @@ describe('Pharmacy', function () {
 
         it('should have its merkleroot initialized', async function () {
             const { pharmacy } = await loadFixture(deployContractFixture);
-            expect(await pharmacy.merkleRoot()).to.equal(getPharmaciesHexMerkleRoot());
+            expect(await pharmacy.pharmaciesHexMerkleRoot_()).to.equal(getPharmaciesHexMerkleRoot());
         });
     });
 
@@ -28,14 +28,14 @@ describe('Pharmacy', function () {
         it('should set merkle root as admin', async function () {
             const { pharmacy } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            await pharmacy.setMerkleRoot(newRoot);
-            expect(await pharmacy.merkleRoot()).to.equal(newRoot);
+            await pharmacy.setPharmacyMerkleRoot(newRoot);
+            expect(await pharmacy.pharmaciesHexMerkleRoot_()).to.equal(newRoot);
         });
 
         it('should not set the merkle root if not an admin', async function () {
             const { pharmacy, addrs } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            expect(pharmacy.connect(addrs[10]).setMerkleRoot(newRoot))
+            expect(pharmacy.connect(addrs[10]).setPharmacyMerkleRoot(newRoot))
                 .to.be.revertedWithCustomError(pharmacy, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[10].address);
         });
@@ -44,7 +44,7 @@ describe('Pharmacy', function () {
     describe('Authorization', function () {
         it('should authorize a valid pharmacy', async function () {
             const { pharmacy, addrs } = await loadFixture(deployContractFixture);
-            expect(await pharmacy.isWhitelisted(addrs[13].address, getPharmaciesTreeProof(addrs[13].address))).to.equal(
+            expect(await pharmacy.isPharmacy(addrs[13].address, getPharmaciesTreeProof(addrs[13].address))).to.equal(
                 true,
             );
         });
@@ -52,7 +52,7 @@ describe('Pharmacy', function () {
         it('should deny an invalid pharmacy', async function () {
             const { pharmacy, addrs } = await loadFixture(deployContractFixture);
             const addr = addrs[addrs.length - 1]; // We use the last hardhat address which does not belong to any group
-            expect(await pharmacy.isWhitelisted(addr.address, getPharmaciesTreeProof(addr.address))).to.equal(false);
+            expect(await pharmacy.isPharmacy(addr.address, getPharmaciesTreeProof(addr.address))).to.equal(false);
         });
     });
 });

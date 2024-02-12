@@ -1,6 +1,6 @@
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const { expect } = require('chai');
-const { getDoctorsHexMerkleRoot, getDoctorsTreeProof } = require('./merkletrees');
+const { getDoctorsHexMerkleRoot, getDoctorsTreeProof } = require('./whitelists/merkletrees');
 
 describe('Doctor', function () {
     async function deployContractFixture() {
@@ -20,7 +20,7 @@ describe('Doctor', function () {
 
         it('should have its merkleroot initialized', async function () {
             const { doctor } = await loadFixture(deployContractFixture);
-            expect(await doctor.merkleRoot()).to.equal(getDoctorsHexMerkleRoot());
+            expect(await doctor.doctorsHexMerkleRoot_()).to.equal(getDoctorsHexMerkleRoot());
         });
     });
 
@@ -28,14 +28,14 @@ describe('Doctor', function () {
         it('should set merkle root as admin', async function () {
             const { doctor } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            await doctor.setMerkleRoot(newRoot);
-            expect(await doctor.merkleRoot()).to.equal(newRoot);
+            await doctor.setDoctorsMerkleRoot(newRoot);
+            expect(await doctor.doctorsHexMerkleRoot_()).to.equal(newRoot);
         });
 
         it('should not set the merkle root if not an admin', async function () {
             const { doctor, addrs } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            expect(doctor.connect(addrs[10]).setMerkleRoot(newRoot))
+            expect(doctor.connect(addrs[10]).setDoctorsMerkleRoot(newRoot))
                 .to.be.revertedWithCustomError(doctor, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[10].address);
         });
@@ -44,13 +44,13 @@ describe('Doctor', function () {
     describe('Authorization', function () {
         it('should authorize a valid doctor', async function () {
             const { doctor, addrs } = await loadFixture(deployContractFixture);
-            expect(await doctor.isWhitelisted(addrs[1].address, getDoctorsTreeProof(addrs[1].address))).to.equal(true);
+            expect(await doctor.isDoctor(addrs[1].address, getDoctorsTreeProof(addrs[1].address))).to.equal(true);
         });
 
         it('should deny an invalid doctor', async function () {
             const { doctor, addrs } = await loadFixture(deployContractFixture);
             const addr = addrs[addrs.length - 1]; // We use the last hardhat address which does not belong to any group
-            expect(await doctor.isWhitelisted(addr.address, getDoctorsTreeProof(addr.address))).to.equal(false);
+            expect(await doctor.isDoctor(addr.address, getDoctorsTreeProof(addr.address))).to.equal(false);
         });
     });
 });
