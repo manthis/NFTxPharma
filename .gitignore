@@ -132,3 +132,5 @@ backend/artifacts
 backend/cache
 backend/coverage
 backend/node_modules
+backend/coverage.json
+backend/coverage.json
