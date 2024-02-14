@@ -1,0 +1,2486 @@
+[
+    {
+        "id": "60003620",
+        "name": "BECLOSPIN 800 microgrammes/2ml suspension pour inhalation par nébuliseur",
+        "price": 17.79,
+        "rate": 65
+    },
+    {
+        "id": "60034085",
+        "name": "BUCCOLAM 10 mg, solution buccale",
+        "price": 80.26,
+        "rate": 65
+    },
+    {
+        "id": "60038525",
+        "name": "BUDESONIDE/FORMOTEROL SANDOZ FORSPIRO 320 microgrammes/9 microgrammes/dose, poudre pour inhalation en récipient unidose",
+        "price": 27.27,
+        "rate": 65
+    },
+    {
+        "id": "60048672",
+        "name": "BETAHISTINE TEVA 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "60100877",
+        "name": "BETOPTIC 0,5 POUR CENT, collyre",
+        "price": 4.89,
+        "rate": 65
+    },
+    {
+        "id": "60152607",
+        "name": "BETNESOL 4 mg/1 ml, solution injectable",
+        "price": 3.18,
+        "rate": 65
+    },
+    {
+        "id": "60156089",
+        "name": "BICALUTAMIDE ALMUS 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "60202750",
+        "name": "BILASTINE ZENTIVA 20 mg, comprimé",
+        "price": 4.24,
+        "rate": 30
+    },
+    {
+        "id": "60204573",
+        "name": "BUPRENORPHINE ARROW 6 mg, comprimé sublingual",
+        "price": 9.86,
+        "rate": 65
+    },
+    {
+        "id": "60205159",
+        "name": "BENLYSTA 200 mg, solution injectable en stylo prérempli",
+        "price": 216.12,
+        "rate": 65
+    },
+    {
+        "id": "60260910",
+        "name": "BECLOSPIN 400 microgrammes, suspension pour inhalation par nébuliseur",
+        "price": 12.68,
+        "rate": 65
+    },
+    {
+        "id": "60316362",
+        "name": "BRINTELLIX 20 mg, comprimé pelliculé",
+        "price": 32.54,
+        "rate": 30
+    },
+    {
+        "id": "60364161",
+        "name": "BIPRETERAX 10 mg/2,5 mg, comprimé pelliculé",
+        "price": 6.99,
+        "rate": 65
+    },
+    {
+        "id": "60443897",
+        "name": "BILASTINE EG 20 mg, comprimé",
+        "price": 2.31,
+        "rate": 30
+    },
+    {
+        "id": "60446911",
+        "name": "BICARBONATE DE SODIUM COOPER 1,4 %, solution pour perfusion en flacon",
+        "price": 3.71,
+        "rate": 65
+    },
+    {
+        "id": "60462965",
+        "name": "BOSULIF 100 mg, comprimé pelliculé",
+        "price": 553.09,
+        "rate": 100
+    },
+    {
+        "id": "60505950",
+        "name": "BUDESONIDE ARROW 0,5 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "60512521",
+        "name": "BUDESONIDE ZENTIVA 0,5 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "60524826",
+        "name": "BISOPROLOL TEVA 10 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60571391",
+        "name": "BECLOJET 250 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 15.9,
+        "rate": 65
+    },
+    {
+        "id": "60577565",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE VIATRIS 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60590630",
+        "name": "BUPRENORPHINE SANDOZ 6 mg, comprimé sublingual",
+        "price": 9.86,
+        "rate": 65
+    },
+    {
+        "id": "60598673",
+        "name": "BISOPROLOL CRISTERS 3,75 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60607955",
+        "name": "BIMATOPROST BIOGARAN 0,1 mg/mL, collyre en solution",
+        "price": 6.58,
+        "rate": 65
+    },
+    {
+        "id": "60663142",
+        "name": "BISOPROLOL EG 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60673389",
+        "name": "BUCCOLAM 2,5 mg, solution buccale",
+        "price": 80.26,
+        "rate": 65
+    },
+    {
+        "id": "60703829",
+        "name": "BIOCALYPTOL, sirop",
+        "price": 3.06,
+        "rate": 30
+    },
+    {
+        "id": "60714918",
+        "name": "BUPRENORPHINE VIATRIS 4 mg, comprimé sublingual",
+        "price": 6.93,
+        "rate": 65
+    },
+    {
+        "id": "60724061",
+        "name": "BUDESONIDE VIATRIS 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "60789290",
+        "name": "BISOPROLOL SUN 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60805638",
+        "name": "BETNEVAL LOTION 0,1 %, émulsion pour application cutanée",
+        "price": 2.66,
+        "rate": 65
+    },
+    {
+        "id": "60850633",
+        "name": "BISOPROLOL EG 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "60866559",
+        "name": "BRAFTOVI 75 mg, gélule",
+        "price": 1643.58,
+        "rate": 100
+    },
+    {
+        "id": "60895361",
+        "name": "BISOPROLOL VIATRIS 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60942900",
+        "name": "BISOPROLOL BGR 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60961427",
+        "name": "BRICANYL TURBUHALER 500 microgrammes/dose, poudre pour inhalation",
+        "price": 4.43,
+        "rate": 65
+    },
+    {
+        "id": "60967985",
+        "name": "BISOCE 1,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "60973899",
+        "name": "BCG-MEDAC, poudre et solvant pour suspension intravésicale",
+        "price": 158.17,
+        "rate": 100
+    },
+    {
+        "id": "60983726",
+        "name": "BYETTA 5 microgrammes, solution injectable, stylo prérempli",
+        "price": 79.56,
+        "rate": 65
+    },
+    {
+        "id": "60996403",
+        "name": "BILTRICIDE 600 mg, comprimé pelliculé quadrisécable",
+        "price": 23.18,
+        "rate": 65
+    },
+    {
+        "id": "60996524",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE TEVA 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61001138",
+        "name": "BUPRENORPHINE VIATRIS 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "61084408",
+        "name": "BROMAZEPAM ARROW 1,5 mg, comprimé",
+        "price": 2.86,
+        "rate": 65
+    },
+    {
+        "id": "61094975",
+        "name": "BISOPROLOL CRISTERS PHARMA 10 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61111556",
+        "name": "BETAMETHASONE ARROW 0,05 %, solution buvable en gouttes",
+        "price": 3.79,
+        "rate": 65
+    },
+    {
+        "id": "61137469",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE TEVA 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61165486",
+        "name": "BI PROFENID LP 100 mg, comprimé sécable à libération prolongée",
+        "price": 4.61,
+        "rate": 65
+    },
+    {
+        "id": "61179913",
+        "name": "BENAZEPRIL EG 10 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "61191926",
+        "name": "BETAHISTINE ARROW 8 mg, comprimé",
+        "price": 3.07,
+        "rate": 30
+    },
+    {
+        "id": "61197904",
+        "name": "BYLVAY 200 microgrammes, gélule",
+        "price": 3914.87,
+        "rate": 65
+    },
+    {
+        "id": "61210508",
+        "name": "BISOPROLOL REF 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61211663",
+        "name": "BINOCRIT 5000 UI/0,5 mL, solution injectable en seringue préremplie",
+        "price": 149.66,
+        "rate": 65
+    },
+    {
+        "id": "61253160",
+        "name": "BROMAZEPAM SANDOZ 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "61276216",
+        "name": "BIPRETERAX 5 mg/1,25 mg, comprimé pelliculé",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "61282094",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE VIATRIS 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61300005",
+        "name": "BREAKYL 200 microgrammes, film orodispersible",
+        "price": 146.07,
+        "rate": 65
+    },
+    {
+        "id": "61301363",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ZENTIVA 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61318238",
+        "name": "BISOPROLOL EG 3,75 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61324141",
+        "name": "BETAHISTINE VIATRIS 8 mg, comprimé",
+        "price": 6.37,
+        "rate": 30
+    },
+    {
+        "id": "61354914",
+        "name": "BUDESONIDE SANDOZ 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "61374863",
+        "name": "BISOPROLOL ZYDUS 10 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61429847",
+        "name": "BUPENSAN 4 mg, comprimé sublingual",
+        "price": 6.93,
+        "rate": 65
+    },
+    {
+        "id": "61439909",
+        "name": "BRINTELLIX 15 mg, comprimé pelliculé",
+        "price": 26.81,
+        "rate": 30
+    },
+    {
+        "id": "61528642",
+        "name": "BILASTINE VIATRIS 20 mg, comprimé",
+        "price": 4.24,
+        "rate": 30
+    },
+    {
+        "id": "61548837",
+        "name": "BETADINE SCRUB 4 %, solution pour application cutanée (moussante)",
+        "price": 2.69,
+        "rate": 30
+    },
+    {
+        "id": "61599842",
+        "name": "BICALUTAMIDE BIOGARAN 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "61615809",
+        "name": "BINOCRIT 30 000 UI/0,75 mL, solution injectable en seringue préremplie",
+        "price": 149.66,
+        "rate": 65
+    },
+    {
+        "id": "61623065",
+        "name": "BUCCOLAM 7,5 mg, solution buccale",
+        "price": 80.26,
+        "rate": 65
+    },
+    {
+        "id": "61629890",
+        "name": "BILASTINE TEVA 20 mg, comprimé",
+        "price": 2.31,
+        "rate": 30
+    },
+    {
+        "id": "61662634",
+        "name": "BICALUTAMIDE VIATRIS 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "61669899",
+        "name": "BOSULIF 400 mg, comprimé pelliculé",
+        "price": 2106.14,
+        "rate": 100
+    },
+    {
+        "id": "61674704",
+        "name": "BETAMETHASONE ZENTIVA 0,05 %, solution buvable en gouttes",
+        "price": 3.79,
+        "rate": 65
+    },
+    {
+        "id": "61683436",
+        "name": "BETAHISTINE ZYDUS FRANCE 8 mg, comprimé",
+        "price": 6.37,
+        "rate": 30
+    },
+    {
+        "id": "61688718",
+        "name": "BUPRENORPHINE VIATRIS 0,4 mg, comprimé sublingual",
+        "price": 2.61,
+        "rate": 65
+    },
+    {
+        "id": "61693373",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ARROW LAB 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61740691",
+        "name": "BUPRENORPHINE/NALOXONE ARROW 2 mg/0,5 mg, comprimé sublingual sécable",
+        "price": 2.87,
+        "rate": 65
+    },
+    {
+        "id": "61746541",
+        "name": "BROMAZEPAM CRISTERS 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "61749562",
+        "name": "BECOTIDE 250 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 14.67,
+        "rate": 65
+    },
+    {
+        "id": "61750511",
+        "name": "BETNEVAL 0,1 %, crème",
+        "price": 3.16,
+        "rate": 65
+    },
+    {
+        "id": "61773264",
+        "name": "BETAMETHASONE EG 0,05 POUR CENT, solution buvable en gouttes",
+        "price": 3.79,
+        "rate": 65
+    },
+    {
+        "id": "61799519",
+        "name": "BISOPROLOL CRISTERS 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61800640",
+        "name": "BISOPROLOL REF 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61819669",
+        "name": "BUDESONIDE BIOGARAN 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "61834055",
+        "name": "BURINEX 2 mg/4 ml IV, solution injectable en ampoule",
+        "price": 7.51,
+        "rate": 65
+    },
+    {
+        "id": "61836960",
+        "name": "BISOPROLOL ZYDUS FRANCE 2,50 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61837560",
+        "name": "BISEPTINE, solution pour application locale",
+        "price": 3.13,
+        "rate": 30
+    },
+    {
+        "id": "61846762",
+        "name": "BETAXOLOL EG 20 mg, comprimé pelliculé sécable",
+        "price": 5.97,
+        "rate": 65
+    },
+    {
+        "id": "61849961",
+        "name": "BUPRENORPHINE EG 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "61859603",
+        "name": "BISOPROLOL ACCORD HEALTHCARE 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61872472",
+        "name": "BUPRENORPHINE TEVA 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "61897671",
+        "name": "BISOCE 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61924200",
+        "name": "BICALUTAMIDE CRISTERS PHARMA 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "61942561",
+        "name": "BETAHISTINE ARROW GENERIQUES 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "61946531",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE EG 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "61958462",
+        "name": "BRILIQUE 90 mg, comprimé pelliculé",
+        "price": 58.0,
+        "rate": 65
+    },
+    {
+        "id": "61964472",
+        "name": "BUSPIRONE VIATRIS 10 mg, comprimé sécable",
+        "price": 4.54,
+        "rate": 65
+    },
+    {
+        "id": "61989835",
+        "name": "BETAHISTINE ACCORD 24 mg, comprimé sécable",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "62013175",
+        "name": "BECOTIDE 250 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 13.94,
+        "rate": 65
+    },
+    {
+        "id": "62048799",
+        "name": "BARACLUDE 1 mg, comprimé pelliculé",
+        "price": 156.24,
+        "rate": 65
+    },
+    {
+        "id": "62066808",
+        "name": "BARACLUDE 0,05 mg/ml, solution buvable",
+        "price": 451.94,
+        "rate": 65
+    },
+    {
+        "id": "62096580",
+        "name": "BECLOSPRAY 250 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 15.9,
+        "rate": 65
+    },
+    {
+        "id": "62119207",
+        "name": "BEFIZAL L.P. 400 mg, comprimé enrobé à libération prolongée",
+        "price": 7.42,
+        "rate": 65
+    },
+    {
+        "id": "62127307",
+        "name": "BUDESONIDE EG 0,5 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "62130342",
+        "name": "BENEPALI 25 mg, solution injectable en seringue préremplie",
+        "price": 264.39,
+        "rate": 65
+    },
+    {
+        "id": "62161697",
+        "name": "BETAHISTINE VIATRIS 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "62170657",
+        "name": "BEMFOLA 75 UI/0,125 ml, solution injectable en stylo prérempli",
+        "price": 17.61,
+        "rate": 100
+    },
+    {
+        "id": "62175330",
+        "name": "BISOPROLOL SANDOZ 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "62189294",
+        "name": "BUPRENORPHINE SANDOZ 4 mg, comprimé sublingual",
+        "price": 6.93,
+        "rate": 65
+    },
+    {
+        "id": "62191473",
+        "name": "BETAMETHASONE EG 2 mg, comprimé dispersible sécable",
+        "price": 3.68,
+        "rate": 65
+    },
+    {
+        "id": "62196488",
+        "name": "BRINZOLAMIDE CRISTERS 10 mg/ml, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "62200552",
+        "name": "BINOCRIT 6000 UI/0,6 mL, solution injectable en seringue préremplie",
+        "price": 179.16,
+        "rate": 65
+    },
+    {
+        "id": "62217822",
+        "name": "BORAX/ACIDE BORIQUE VIATRIS 12 mg/18 mg/mL, solution pour lavage ophtalmique en récipient unidose",
+        "price": 2.89,
+        "rate": 30
+    },
+    {
+        "id": "62218397",
+        "name": "BIMATOPROST/TIMOLOL VIATRIS 0,3 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 7.75,
+        "rate": 65
+    },
+    {
+        "id": "62270942",
+        "name": "BROMAZEPAM BIOGARAN 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "62294904",
+        "name": "BECLOMETASONE TEVA 50 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 5.62,
+        "rate": 65
+    },
+    {
+        "id": "62349731",
+        "name": "BISOPROLOL CRISTERS 10 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "62368639",
+        "name": "BUPRENORPHINE ARROW 0,4 mg, comprimé sublingual",
+        "price": 2.61,
+        "rate": 65
+    },
+    {
+        "id": "62398529",
+        "name": "BICALUTAMIDE SANDOZ 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "62404793",
+        "name": "BOOSTRIXTETRA, suspension injectable en seringue préremplie. Vaccin diphtérique, tétanique, coquelucheux (acellulaire multicomposé) et poliomyélitique (inactivé), (adsorbé, à teneur réduite en antigènes)",
+        "price": 22.71,
+        "rate": 65
+    },
+    {
+        "id": "62412256",
+        "name": "BIMZELX 160 mg, solution injectable en stylo prérempli",
+        "price": 1679.83,
+        "rate": 65
+    },
+    {
+        "id": "62421127",
+        "name": "BETNESOL 5 mg/100 ml, solution rectale en poche",
+        "price": 3.5,
+        "rate": 65
+    },
+    {
+        "id": "62428328",
+        "name": "BENAZEPRIL HYDROCHLOROTHIAZIDE EG 10 mg/12,5 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "62438151",
+        "name": "BEYFORTUS 50 mg, solution injectable en seringue préremplie",
+        "price": 4.59,
+        "rate": 100
+    },
+    {
+        "id": "62490803",
+        "name": "BINOCRIT 1000 UI/0,5 mL, solution injectable en seringue préremplie",
+        "price": 31.59,
+        "rate": 65
+    },
+    {
+        "id": "62496101",
+        "name": "BISOPROLOL SANDOZ 1,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "62591688",
+        "name": "BISOPROLOL TEVA SANTE 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "62600742",
+        "name": "BRICANYL 0,5 mg/1 ml, solution injectable en ampoule",
+        "price": 3.65,
+        "rate": 65
+    },
+    {
+        "id": "62617179",
+        "name": "BENAZEPRIL/HYDROCHLOROTHIAZIDE ARROW 10 mg/12,5 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "62652340",
+        "name": "BRONCHODUAL 50 microgrammes/20 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 8.53,
+        "rate": 65
+    },
+    {
+        "id": "62702836",
+        "name": "BISOPROLOL ZYDUS FRANCE 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "62710021",
+        "name": "BETAHISTINE SANDOZ 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "62754181",
+        "name": "BETAHISTINE ACCORD 8 mg, comprimé",
+        "price": 3.07,
+        "rate": 30
+    },
+    {
+        "id": "62767225",
+        "name": "BUPRENORPHINE BIOGARAN 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "62789360",
+        "name": "BLEOMYCINE BELLON 15 mg, poudre pour solution injectable",
+        "price": 40.26,
+        "rate": 100
+    },
+    {
+        "id": "62792157",
+        "name": "BRINTELLIX 5 mg, comprimé pelliculé",
+        "price": 12.18,
+        "rate": 30
+    },
+    {
+        "id": "62794254",
+        "name": "BICALUTAMIDE ZENTIVA 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "62844771",
+        "name": "BIKTARVY 50 mg/200 mg/25 mg, comprimé pelliculé",
+        "price": 626.59,
+        "rate": 100
+    },
+    {
+        "id": "62854032",
+        "name": "BEMFOLA 450 UI/0,75 ml, solution injectable en stylo prérempli",
+        "price": 96.27,
+        "rate": 100
+    },
+    {
+        "id": "62867631",
+        "name": "BISOPROLOL ZENTIVA K.S 7,5 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "62892314",
+        "name": "BISOPROLOL EVOLUGEN 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "62927306",
+        "name": "BUPRENORPHINE BIOGARAN 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "62931728",
+        "name": "BIMATOPROST TEVA SANTE 0,1 mg/mL, collyre en solution",
+        "price": 6.58,
+        "rate": 65
+    },
+    {
+        "id": "62969789",
+        "name": "BISOPROLOL TEVA 5 mg, comprimé pelliculé",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "62972963",
+        "name": "BETASERC 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "62983550",
+        "name": "BYLVAY 400 microgrammes, gélule",
+        "price": 7695.84,
+        "rate": 65
+    },
+    {
+        "id": "63006917",
+        "name": "BINOCRIT 40 000 UI/mL, solution injectable en seringue préremplie",
+        "price": 198.74,
+        "rate": 65
+    },
+    {
+        "id": "63011070",
+        "name": "BACLOFENE EG 10 mg, comprimé sécable",
+        "price": 3.5,
+        "rate": 30
+    },
+    {
+        "id": "63023425",
+        "name": "BILASTINE BIOGARAN 20 mg, comprimé",
+        "price": 4.24,
+        "rate": 30
+    },
+    {
+        "id": "63036604",
+        "name": "BUDESONIDE SANDOZ 0,5 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "63058248",
+        "name": "BICARBONATE DE SODIUM LAVOISIER 1,4 %, solution pour perfusion",
+        "price": 3.36,
+        "rate": 65
+    },
+    {
+        "id": "63091077",
+        "name": "BETAHISTINE ZENTIVA 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "63092446",
+        "name": "BICARBONATE DE SODIUM A 1,4 % BIOSEDRA, solution pour perfusion",
+        "price": 2.2,
+        "rate": 65
+    },
+    {
+        "id": "63110385",
+        "name": "BISOPROLOL QUIVER LAB 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63111747",
+        "name": "BECLOMETASONE TEVA 400 microgrammes/1 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 10.09,
+        "rate": 65
+    },
+    {
+        "id": "63150294",
+        "name": "BOSULIF 500 mg, comprimé pelliculé",
+        "price": 2599.2,
+        "rate": 100
+    },
+    {
+        "id": "63159724",
+        "name": "BISOPROLOL BGR 1,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63163772",
+        "name": "BUDESONIDE VIATRIS 0,50 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "63251140",
+        "name": "BIMATOPROST/TIMOLOL EG 0,3 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 7.75,
+        "rate": 65
+    },
+    {
+        "id": "63276706",
+        "name": "BISOPROLOL QUIVER LAB 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63295400",
+        "name": "BECONASE 50 microgrammes, suspension pour pulvérisation nasale en flacon pulvérisateur",
+        "price": 6.28,
+        "rate": 30
+    },
+    {
+        "id": "63305905",
+        "name": "BUSPIRONE SANDOZ 10 mg, comprimé sécable",
+        "price": 4.54,
+        "rate": 65
+    },
+    {
+        "id": "63374716",
+        "name": "BORAX / ACIDE BORIQUE ARROW 12 mg/18 mg/ml, solution pour lavage ophtalmique en récipient unidose",
+        "price": 2.89,
+        "rate": 30
+    },
+    {
+        "id": "63432799",
+        "name": "BRIMONIDINE/TIMOLOL EG 2 mg/ml + 5 mg/ml, collyre en solution",
+        "price": 6.65,
+        "rate": 65
+    },
+    {
+        "id": "63462194",
+        "name": "BETAMETHASONE BIOGARAN 0,05 POUR CENT, solution buvable en gouttes",
+        "price": 3.85,
+        "rate": 65
+    },
+    {
+        "id": "63516304",
+        "name": "BUPRENORPHINE SANDOZ 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "63546596",
+        "name": "BRIVIACT 100 mg, comprimé pelliculé",
+        "price": 70.85,
+        "rate": 65
+    },
+    {
+        "id": "63566111",
+        "name": "BETAMETHASONE BIOGARAN 0,05 %, crème",
+        "price": 3.0,
+        "rate": 65
+    },
+    {
+        "id": "63568557",
+        "name": "BISOPROLOL EVOLUGEN 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63572025",
+        "name": "BETAGAN 0,5 % , collyre en solution en récipient unidose",
+        "price": 7.44,
+        "rate": 65
+    },
+    {
+        "id": "63591495",
+        "name": "BETAXOLOL SANDOZ 20 mg, comprimé pelliculé sécable",
+        "price": 5.97,
+        "rate": 65
+    },
+    {
+        "id": "63631623",
+        "name": "BUPRENORPHINE SANDOZ 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "63721729",
+        "name": "BROMAZEPAM TEVA 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "63731748",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE VIATRIS 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63743120",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE SANDOZ 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63743330",
+        "name": "BETAMETHASONE BIOGARAN 2 mg, comprimé dispersible sécable",
+        "price": 3.68,
+        "rate": 65
+    },
+    {
+        "id": "63759509",
+        "name": "BIMATOPROST/TIMOLOL TEVA 0,3 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 7.75,
+        "rate": 65
+    },
+    {
+        "id": "63760582",
+        "name": "BETAXOLOL TEVA SANTE 20 mg, comprimé pelliculé sécable",
+        "price": 5.97,
+        "rate": 65
+    },
+    {
+        "id": "63775310",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE BIOGARAN 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63792263",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE CRISTERS 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63793479",
+        "name": "BISOPROLOL MYLAN 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63806058",
+        "name": "BINOCRIT 8000 UI/0,8 mL, solution injectable en seringue préremplie",
+        "price": 237.93,
+        "rate": 65
+    },
+    {
+        "id": "63806097",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE SANDOZ 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63823680",
+        "name": "BISOPROLOL ACCORD HEALTHCARE 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "63928539",
+        "name": "BISOPROLOL QUIVER 7,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "63949960",
+        "name": "BIMATOPROST/TIMOLOL ZENTIVA 0,3 mg/5 mg par mL, collyre en solution",
+        "price": 7.75,
+        "rate": 65
+    },
+    {
+        "id": "63954886",
+        "name": "BISOPROLOL QUIVER LAB 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "64002423",
+        "name": "BRIVIACT 50 mg, comprimé pelliculé",
+        "price": 70.85,
+        "rate": 65
+    },
+    {
+        "id": "64048335",
+        "name": "BRIMONIDINE VIATRIS 0,2 % (2 mg/ml), collyre en solution",
+        "price": 4.57,
+        "rate": 65
+    },
+    {
+        "id": "64065772",
+        "name": "BRIVIACT 10 mg, comprimé pelliculé",
+        "price": 18.67,
+        "rate": 65
+    },
+    {
+        "id": "64069322",
+        "name": "BICALUTAMIDE EG 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "64073783",
+        "name": "BACLOFENE ZENTIVA 10 mg, comprimé sécable",
+        "price": 3.3,
+        "rate": 30
+    },
+    {
+        "id": "64083973",
+        "name": "BISOPROLOL SANDOZ 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64087459",
+        "name": "BISOPROLOL VIATRIS 1,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64110541",
+        "name": "BECLOMETASONE CHIESI 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur",
+        "price": 14.07,
+        "rate": 65
+    },
+    {
+        "id": "64121235",
+        "name": "BACTRIM FORTE, comprimé",
+        "price": 2.8,
+        "rate": 65
+    },
+    {
+        "id": "64195221",
+        "name": "BIMATOPROST/TIMOLOL SANDOZ 0,3 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 7.75,
+        "rate": 65
+    },
+    {
+        "id": "64212215",
+        "name": "BETAHISTINE EG 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "64236159",
+        "name": "BISOCE 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64245311",
+        "name": "BISOPROLOL SANDOZ 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64270784",
+        "name": "BICALUTAMIDE EVOLUGEN 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "64315724",
+        "name": "BUDESONIDE BIOGARAN 0,5 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "64376734",
+        "name": "BYLVAY 1200 microgrammes, gélule",
+        "price": 22819.7,
+        "rate": 65
+    },
+    {
+        "id": "64409255",
+        "name": "BETAXOLOL BIOGARAN 20 mg, comprimé pelliculé sécable",
+        "price": 5.97,
+        "rate": 65
+    },
+    {
+        "id": "64416164",
+        "name": "BROMAZEPAM VIATRIS 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "64424905",
+        "name": "BEMFOLA 150 UI/0,25 ml, solution injectable en stylo prérempli",
+        "price": 35.09,
+        "rate": 100
+    },
+    {
+        "id": "64432503",
+        "name": "BISOPROLOL EG 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64483490",
+        "name": "BIRODOGYL, comprimé pelliculé",
+        "price": 6.55,
+        "rate": 65
+    },
+    {
+        "id": "64488861",
+        "name": "BETAFERON 250 microgrammes/ml, poudre et solvant pour solution injectable",
+        "price": 530.17,
+        "rate": 65
+    },
+    {
+        "id": "64493883",
+        "name": "BEXSERO suspension injectable en seringue préremplie. Vaccin méningococcique groupe B (ADNr, composant, adsorbé)",
+        "price": 84.72,
+        "rate": 65
+    },
+    {
+        "id": "64504550",
+        "name": "BENEPALI 50 mg, solution injectable en seringue préremplie",
+        "price": 525.97,
+        "rate": 65
+    },
+    {
+        "id": "64530520",
+        "name": "BONDRONAT 6 mg, solution à diluer pour perfusion",
+        "price": 279.15,
+        "rate": 65
+    },
+    {
+        "id": "64610621",
+        "name": "BICAFRES 1000 mg, comprimé gastro-résistant",
+        "price": 28.41,
+        "rate": 65
+    },
+    {
+        "id": "64644709",
+        "name": "BUPRENORPHINE VIATRIS 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "64667266",
+        "name": "BISOPROLOL EG 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64674937",
+        "name": "BISOPROLOL EVOLUGEN 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "64716254",
+        "name": "BUDESONIDE ZENTIVA 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "64720320",
+        "name": "BORAX/ACIDE BORIQUE BIOGARAN 12 mg/18 mg/ml, solution pour lavage ophtalmique en récipient unidose",
+        "price": 2.89,
+        "rate": 30
+    },
+    {
+        "id": "64791577",
+        "name": "BISOPROLOL VIATRIS 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "64853413",
+        "name": "BIMATOPROST VIATRIS 0,3 mg/ml, collyre en solution",
+        "price": 6.58,
+        "rate": 65
+    },
+    {
+        "id": "64861004",
+        "name": "BISOPROLOL QUIVER 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "64872342",
+        "name": "BRIVIACT 25 mg, comprimé pelliculé",
+        "price": 70.85,
+        "rate": 65
+    },
+    {
+        "id": "64907754",
+        "name": "BRINZOLAMIDE SANDOZ 10 mg/mL, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "65021818",
+        "name": "BUPRENORPHINE ARROW 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "65031328",
+        "name": "BETAMETHASONE ZENTIVA 2 mg, comprimé dispersible sécable",
+        "price": 3.68,
+        "rate": 65
+    },
+    {
+        "id": "65031417",
+        "name": "BISOPROLOL QUIVER 10 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65033304",
+        "name": "BETAHISTINE CRISTERS 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "65086755",
+        "name": "BECLOMETASONE CHIESI 400 microgrammes/1 ml, suspension pour inhalation par nébuliseur",
+        "price": 10.09,
+        "rate": 65
+    },
+    {
+        "id": "65117097",
+        "name": "BISOPROLOL TEVA SANTE 10 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65149401",
+        "name": "BICALUTAMIDE ARROW LAB 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "65150617",
+        "name": "BEYFORTUS 100 mg, solution injectable en seringue préremplie",
+        "price": 4.59,
+        "rate": 100
+    },
+    {
+        "id": "65179070",
+        "name": "BISOPROLOL TEVA SANTE 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65181349",
+        "name": "BACTRIM, comprimé sécable",
+        "price": 3.26,
+        "rate": 65
+    },
+    {
+        "id": "65186111",
+        "name": "BISOPROLOL QUIVER 3,75 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65195943",
+        "name": "BETAHISTINE BIOGARAN 8 mg, comprimé",
+        "price": 3.07,
+        "rate": 30
+    },
+    {
+        "id": "65213665",
+        "name": "BISOPROLOL QUIVER LAB 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65235359",
+        "name": "BISOPROLOL BIOGARAN 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65278054",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ARROW 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65306016",
+        "name": "BUDESONIDE EVOLUGEN 0,5 mg/2 mL, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "65343573",
+        "name": "BUPRENORPHINE ARROW 4 mg, comprimé sublingual",
+        "price": 6.93,
+        "rate": 65
+    },
+    {
+        "id": "65346765",
+        "name": "BI MISSILOR 1,5 M.U.I./250 mg, comprimé pelliculé",
+        "price": 4.74,
+        "rate": 65
+    },
+    {
+        "id": "65382081",
+        "name": "BIMATOPROST SANDOZ 0,3 mg/mL, collyre en solution",
+        "price": 6.58,
+        "rate": 65
+    },
+    {
+        "id": "65407392",
+        "name": "BEXAROTENE CIPLA 75 mg, capsule molle",
+        "price": 293.83,
+        "rate": 100
+    },
+    {
+        "id": "65445795",
+        "name": "BISOPROLOL KRKA 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65463708",
+        "name": "BETAHISTINE ZENTIVA 8 mg, comprimé",
+        "price": 6.37,
+        "rate": 30
+    },
+    {
+        "id": "65467749",
+        "name": "BISOPROLOL ZENTIVA K.S 3,75 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65492389",
+        "name": "BRIMONIDINE/TIMOLOL VIATRIS 2 mg/ml + 5 mg/ml, collyre en solution",
+        "price": 6.65,
+        "rate": 65
+    },
+    {
+        "id": "65506814",
+        "name": "BRINZOLAMIDE/TIMOLOL VIATRIS 10 mg/5 mg par mL, collyre en suspension",
+        "price": 4.88,
+        "rate": 65
+    },
+    {
+        "id": "65519142",
+        "name": "BRIVIACT 75 mg, comprimé pelliculé",
+        "price": 70.85,
+        "rate": 65
+    },
+    {
+        "id": "65554855",
+        "name": "BUDESONIDE ARROW 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "65558259",
+        "name": "BEFIZAL 200 mg, comprimé pelliculé",
+        "price": 6.73,
+        "rate": 65
+    },
+    {
+        "id": "65573720",
+        "name": "BRUFEN 400 mg, comprimé pelliculé",
+        "price": 3.4,
+        "rate": 65
+    },
+    {
+        "id": "65591063",
+        "name": "BISOPROLOL KRKA 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "65599341",
+        "name": "BISOPROLOL VIATRIS 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65607585",
+        "name": "BEOVU 120 mg/ml, solution injectable en seringue préremplie",
+        "price": 465.32,
+        "rate": 100
+    },
+    {
+        "id": "65609084",
+        "name": "BUPRENORPHINE VIATRIS 6 mg, comprimé sublingual",
+        "price": 9.86,
+        "rate": 65
+    },
+    {
+        "id": "65612995",
+        "name": "BINOCRIT 20 000 UI/0,5 mL, solution injectable en seringue préremplie",
+        "price": 100.47,
+        "rate": 65
+    },
+    {
+        "id": "65629845",
+        "name": "BUCCOLAM 5 mg, solution buccale",
+        "price": 80.26,
+        "rate": 65
+    },
+    {
+        "id": "65648500",
+        "name": "BUDESONIDE TEVA 1 mg/2 mL, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "65658665",
+        "name": "BISOPROLOL KRKA 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65662076",
+        "name": "BI TILDIEM L.P. 120 mg, comprimé enrobé à libération prolongée",
+        "price": 5.21,
+        "rate": 65
+    },
+    {
+        "id": "65664668",
+        "name": "BISOPROLOL TEVA SANTE 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65694191",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ARROW 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65699110",
+        "name": "BISOPROLOL REF 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65715931",
+        "name": "BETAMETHASONE ARROW 2 mg, comprimé dispersible sécable",
+        "price": 3.68,
+        "rate": 65
+    },
+    {
+        "id": "65726080",
+        "name": "BETESIL 2,250 mg, emplâtre médicamenteux",
+        "price": 19.69,
+        "rate": 65
+    },
+    {
+        "id": "65739633",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ARROW 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65740589",
+        "name": "BUPRENORPHINE VIATRIS 1 mg, comprimé sublingual",
+        "price": 3.48,
+        "rate": 65
+    },
+    {
+        "id": "65781696",
+        "name": "BECLO-RHINO 50 microgrammes/dose, suspension pour pulvérisation nasale en flacon",
+        "price": 3.42,
+        "rate": 30
+    },
+    {
+        "id": "65819809",
+        "name": "BICALUTAMIDE ACCORD 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "65889825",
+        "name": "BRIMONIDINE SANDOZ 0,2 % (2 mg/ml), collyre en solution",
+        "price": 4.57,
+        "rate": 65
+    },
+    {
+        "id": "65909683",
+        "name": "BISOPROLOL REF 1,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "65919841",
+        "name": "BRUKINSA 80 mg, gélule",
+        "price": 4751.89,
+        "rate": 100
+    },
+    {
+        "id": "65925723",
+        "name": "BILASKA 20 mg, comprimé",
+        "price": 2.63,
+        "rate": 30
+    },
+    {
+        "id": "65970533",
+        "name": "BETAHISTINE EG 8 mg, comprimé",
+        "price": 3.07,
+        "rate": 30
+    },
+    {
+        "id": "66009498",
+        "name": "BUPRENORPHINE SANDOZ 1 mg, comprimé sublingual",
+        "price": 3.48,
+        "rate": 65
+    },
+    {
+        "id": "66009893",
+        "name": "BACLOCUR 10 mg, comprimé pelliculé sécable",
+        "price": 5.59,
+        "rate": 15
+    },
+    {
+        "id": "66051593",
+        "name": "BISOPROLOL VIATRIS SANTE 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66090991",
+        "name": "BISOPROLOL CRISTERS PHARMA 5 mg, comprimé pelliculé",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "66105532",
+        "name": "BYDUREON 2 mg, poudre et solvant pour suspension injectable à libération prolongée en stylo prérempli",
+        "price": 77.6,
+        "rate": 65
+    },
+    {
+        "id": "66126291",
+        "name": "BRINZOLAMIDE EG 10 mg/ml, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "66148697",
+        "name": "BENAZEPRIL ARROW 10 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "66185667",
+        "name": "BISOPROLOL CRISTERS 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "66202052",
+        "name": "BECLOMETASONE TEVA 250 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 15.8,
+        "rate": 65
+    },
+    {
+        "id": "66242285",
+        "name": "BISOPROLOL CRISTERS 7,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66289783",
+        "name": "BRIMONIDINE EG 0,2 % (2 mg/ml), collyre en solution",
+        "price": 4.57,
+        "rate": 65
+    },
+    {
+        "id": "66303368",
+        "name": "BEVITINE 100 mg/2 ml, solution injectable en ampoule",
+        "price": 3.28,
+        "rate": 65
+    },
+    {
+        "id": "66322048",
+        "name": "BETNESOL 0,50 mg, comprimé effervescent",
+        "price": 3.04,
+        "rate": 65
+    },
+    {
+        "id": "66325311",
+        "name": "BACTROBAN 2 %, pommade nasale",
+        "price": 5.75,
+        "rate": 65
+    },
+    {
+        "id": "66332081",
+        "name": "BEAGYNE 150 mg, gélule",
+        "price": 3.58,
+        "rate": 30
+    },
+    {
+        "id": "66428496",
+        "name": "BISOPROLOL VIATRIS 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66454128",
+        "name": "BIMATOPROST/TIMOLOL BIOGARAN 0,3 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 7.64,
+        "rate": 65
+    },
+    {
+        "id": "66528824",
+        "name": "BISOPROLOL QUIVER LAB 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66552355",
+        "name": "BISOPROLOL CRISTERS 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66647757",
+        "name": "BISOPROLOL EG 7,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66720194",
+        "name": "BISOPROLOL QUIVER 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66771566",
+        "name": "BISOPROLOL BGR 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66826137",
+        "name": "BISOPROLOL ZENTIVA LAB 10 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "66928163",
+        "name": "BEMEDREX EASYHALER 200 microgrammes/dose, poudre pour inhalation",
+        "price": 21.44,
+        "rate": 65
+    },
+    {
+        "id": "66997921",
+        "name": "BISOPROLOL ZENTIVA K.S 2,5 mg, comprimé",
+        "price": 14.25,
+        "rate": 65
+    },
+    {
+        "id": "67024791",
+        "name": "BISOCE 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67025142",
+        "name": "BASDENE 25 mg, comprimé",
+        "price": 3.94,
+        "rate": 65
+    },
+    {
+        "id": "67042647",
+        "name": "BIMATOPROST EG 0,3 mg/ml, collyre en solution",
+        "price": 6.58,
+        "rate": 65
+    },
+    {
+        "id": "67056604",
+        "name": "BETAXOLOL VIATRIS 20 mg, comprimé pelliculé sécable",
+        "price": 5.97,
+        "rate": 65
+    },
+    {
+        "id": "67076845",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ZENTIVA 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67102553",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE EG 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67148878",
+        "name": "BUPRENORPHINE ARROW 1 mg, comprimé sublingual",
+        "price": 3.48,
+        "rate": 65
+    },
+    {
+        "id": "67154226",
+        "name": "BUPRENORPHINE/NALOXONE ARROW 8 mg/2 mg, comprimé sublingual sécable",
+        "price": 5.69,
+        "rate": 65
+    },
+    {
+        "id": "67181796",
+        "name": "BIONOLYTE G5, solution pour perfusion",
+        "price": 3.12,
+        "rate": 65
+    },
+    {
+        "id": "67194854",
+        "name": "BREAKYL 400 microgrammes, film orodispersible",
+        "price": 146.07,
+        "rate": 65
+    },
+    {
+        "id": "67229344",
+        "name": "BREXIN 20 mg, comprimé effervescent",
+        "price": 6.14,
+        "rate": 30
+    },
+    {
+        "id": "67232600",
+        "name": "BUDESONIDE EG 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "67240942",
+        "name": "BECLOSPRAY 50 microgrammes/dose, solution pour inhalation en flacon pressurisé",
+        "price": 3.95,
+        "rate": 65
+    },
+    {
+        "id": "67252909",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE CRISTERS 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67312740",
+        "name": "BECILAN 250 mg/5 ml, solution injectable",
+        "price": 4.08,
+        "rate": 65
+    },
+    {
+        "id": "67345231",
+        "name": "BISOPROLOL ALMUS 10 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67404879",
+        "name": "BUPENSAN 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "67406111",
+        "name": "BUPRENORPHINE TEVA 0,4 mg, comprimé sublingual",
+        "price": 2.61,
+        "rate": 65
+    },
+    {
+        "id": "67422400",
+        "name": "BISOPROLOL ZENTIVA 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67429003",
+        "name": "BRIVIACT 10 mg/ml, solution buvable",
+        "price": 75.81,
+        "rate": 65
+    },
+    {
+        "id": "67461691",
+        "name": "BUDESONIDE SANDOZ 64 microgrammes/dose, suspension pour pulvérisation nasale",
+        "price": 5.5,
+        "rate": 30
+    },
+    {
+        "id": "67477845",
+        "name": "BETAHISTINE BIOGARAN 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "67563415",
+        "name": "BURINEX 5 mg, comprimé",
+        "price": 16.17,
+        "rate": 65
+    },
+    {
+        "id": "67568693",
+        "name": "BRIMONIDINE CHAUVIN 2 mg/ml, collyre en solution",
+        "price": 4.57,
+        "rate": 65
+    },
+    {
+        "id": "67584249",
+        "name": "BIOCALYPTOL 6,55 mg/5 ml SANS SUCRE, sirop édulcoré à la saccharine sodique et au maltitol liquide",
+        "price": 3.26,
+        "rate": 30
+    },
+    {
+        "id": "67610861",
+        "name": "BINOCRIT 10 000 UI/1 mL, solution injectable en seringue préremplie",
+        "price": 51.27,
+        "rate": 65
+    },
+    {
+        "id": "67685910",
+        "name": "BORAX/ACIDE BORIQUE ZENTIVA 12 mg/18 mg/ml, solution pour lavage ophtalmique en récipient-unidose",
+        "price": 2.89,
+        "rate": 30
+    },
+    {
+        "id": "67701396",
+        "name": "BRINZOLAMIDE BIOGARAN 10 mg/mL, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "67728468",
+        "name": "BISOPROLOL ACCORD HEALTHCARE 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67736575",
+        "name": "BISOPROLOL NOR 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67770143",
+        "name": "BISOPROLOL TEVA SANTE 3,75 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67780625",
+        "name": "BRINZOLAMIDE VIATRIS 10 mg/ml, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "67802737",
+        "name": "BUDESONIDE TEVA 0,5 mg/2 mL, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 18.1,
+        "rate": 65
+    },
+    {
+        "id": "67803383",
+        "name": "BUDESONIDE EVOLUGEN 1 mg/2 mL, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "67851467",
+        "name": "BROMAZEPAM EG 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "67866768",
+        "name": "BETAHISTINE ARROW 16 mg, comprimé sécable",
+        "price": 4.09,
+        "rate": 30
+    },
+    {
+        "id": "67924965",
+        "name": "BIOCIDAN 0,25 POUR MILLE, collyre",
+        "price": 2.73,
+        "rate": 30
+    },
+    {
+        "id": "67933658",
+        "name": "BEMFOLA 225 UI/0,375 ml, solution injectable en stylo prérempli",
+        "price": 49.14,
+        "rate": 100
+    },
+    {
+        "id": "67938491",
+        "name": "BETNEVAL 0,1 %, pommade",
+        "price": 3.13,
+        "rate": 65
+    },
+    {
+        "id": "67961508",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE BIOGARAN 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "67972497",
+        "name": "BAQSIMI 3 mg, poudre nasale en récipient unidose",
+        "price": 59.97,
+        "rate": 65
+    },
+    {
+        "id": "68055124",
+        "name": "BUPRENORPHINE SANDOZ 0,4 mg, comprimé sublingual",
+        "price": 2.61,
+        "rate": 65
+    },
+    {
+        "id": "68106394",
+        "name": "BIODALGIC 50 mg, comprimé effervescent",
+        "price": 4.44,
+        "rate": 65
+    },
+    {
+        "id": "68115977",
+        "name": "BISOPROLOL VIATRIS 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68162770",
+        "name": "BRINZOLAMIDE/TIMOLOL EG 10 mg/5 mg par mL, collyre en suspension",
+        "price": 4.88,
+        "rate": 65
+    },
+    {
+        "id": "68227652",
+        "name": "BI TILDIEM L.P. 90 mg, comprimé enrobé à libération prolongée",
+        "price": 5.21,
+        "rate": 65
+    },
+    {
+        "id": "68232635",
+        "name": "BURINEX 1 mg, comprimé",
+        "price": 4.64,
+        "rate": 65
+    },
+    {
+        "id": "68242177",
+        "name": "BRICANYL 5 mg/2 mL, solution pour inhalation par nébuliseur en récipient unidose",
+        "price": 6.42,
+        "rate": 65
+    },
+    {
+        "id": "68305211",
+        "name": "BRINZOLAMIDE ARROW 10 mg/mL, collyre en suspension",
+        "price": 5.09,
+        "rate": 65
+    },
+    {
+        "id": "68314018",
+        "name": "BUPRENORPHINE EG 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "68380153",
+        "name": "BISOPROLOL SANDOZ 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68447292",
+        "name": "BENAZEPRIL ARROW 5 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "68472160",
+        "name": "BIMATOPROST VIATRIS 0,1 mg/mL, collyre en solution",
+        "price": 6.69,
+        "rate": 65
+    },
+    {
+        "id": "68482208",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE EG 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68512046",
+        "name": "BISOPROLOL BGR 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "68528958",
+        "name": "BROMAZEPAM ZENTIVA 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "68562572",
+        "name": "BRINTELLIX 10 mg, comprimé pelliculé",
+        "price": 23.28,
+        "rate": 30
+    },
+    {
+        "id": "68579276",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ARROW LAB 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68601712",
+        "name": "BISOPROLOL ZENTIVA K.S 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68626690",
+        "name": "BREXIN 20 mg, comprimé sécable",
+        "price": 6.14,
+        "rate": 30
+    },
+    {
+        "id": "68656947",
+        "name": "BUPRENORPHINE/NALOXONE VIATRIS 8 mg/2 mg, comprimé sublingual sécable",
+        "price": 5.69,
+        "rate": 65
+    },
+    {
+        "id": "68671625",
+        "name": "BRAFTOVI 50 m,g gélule",
+        "price": 616.75,
+        "rate": 100
+    },
+    {
+        "id": "68677400",
+        "name": "BACLOCUR 30 mg, comprimé pelliculé sécable",
+        "price": 14.51,
+        "rate": 15
+    },
+    {
+        "id": "68700817",
+        "name": "BICALUTAMIDE ZYDUS 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "68700831",
+        "name": "BRIMONIDINE BIOGARAN 0,2 % (2 mg/ml), collyre en solution",
+        "price": 4.57,
+        "rate": 65
+    },
+    {
+        "id": "68706624",
+        "name": "BECLOMETASONE TEVA 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 14.07,
+        "rate": 65
+    },
+    {
+        "id": "68708415",
+        "name": "BIMZELX 160 mg, solution injectable en seringue préremplie",
+        "price": 1679.83,
+        "rate": 65
+    },
+    {
+        "id": "68749248",
+        "name": "BISOPROLOL ZENTIVA LAB 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68818769",
+        "name": "BYLVAY 600 microgrammes, gélule",
+        "price": 11476.8,
+        "rate": 65
+    },
+    {
+        "id": "68876142",
+        "name": "BROMAZEPAM ARROW 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "68903689",
+        "name": "BISOCE 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "68915823",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE BIOGARAN 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68930145",
+        "name": "BISOPROLOL ARROW LAB 10 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "68954751",
+        "name": "BINOCRIT 4000 UI/0,4 mL, solution injectable en seringue préremplie",
+        "price": 120.13,
+        "rate": 65
+    },
+    {
+        "id": "68954979",
+        "name": "BEMFOLA 300 UI/0,50 ml, solution injectable en stylo prérempli",
+        "price": 64.86,
+        "rate": 100
+    },
+    {
+        "id": "68962100",
+        "name": "BUPRENORPHINE BIOGARAN 0,4 mg, comprimé sublingual",
+        "price": 2.61,
+        "rate": 65
+    },
+    {
+        "id": "68964585",
+        "name": "BETADINE DERMIQUE 10 POUR CENT, solution pour application locale",
+        "price": 2.85,
+        "rate": 30
+    },
+    {
+        "id": "68978414",
+        "name": "BISOPROLOL ZENTIVA LAB 5 mg, comprimé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "68988159",
+        "name": "BINOCRIT 2000 UI/1 mL, solution injectable en seringue préremplie",
+        "price": 61.12,
+        "rate": 65
+    },
+    {
+        "id": "69000305",
+        "name": "BUPRENORPHINE ARROW 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "69038793",
+        "name": "BACLOCUR 40 mg, comprimé pelliculé sécable",
+        "price": 18.99,
+        "rate": 15
+    },
+    {
+        "id": "69062342",
+        "name": "BISOPROLOL TEVA SANTE 7,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69174003",
+        "name": "BROMAZEPAM ZYDUS 6 mg, comprimé quadrisécable",
+        "price": 2.71,
+        "rate": 65
+    },
+    {
+        "id": "69174754",
+        "name": "BINOCRIT 3000 UI/0,3 mL, solution injectable en seringue préremplie",
+        "price": 90.62,
+        "rate": 65
+    },
+    {
+        "id": "69176659",
+        "name": "BISOPROLOL REF 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69193861",
+        "name": "BICALUTAMIDE TEVA 50 mg, comprimé pelliculé",
+        "price": 38.36,
+        "rate": 100
+    },
+    {
+        "id": "69194835",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE ZENTIVA 5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69196619",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE CRISTERS 10 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69276143",
+        "name": "BIMATOPROST SANDOZ 0,1 mg/mL, collyre en solution",
+        "price": 6.69,
+        "rate": 65
+    },
+    {
+        "id": "69337475",
+        "name": "BISOPROLOL REF 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "69339782",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE SANDOZ 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69381692",
+        "name": "BISOCE 2,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69390232",
+        "name": "BUDESONIDE CRISTERS 1 mg/2 ml, suspension pour inhalation par nébuliseur en récipient unidose",
+        "price": 25.22,
+        "rate": 65
+    },
+    {
+        "id": "69439163",
+        "name": "BETAHISTINE ZYDUS FRANCE 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "69455705",
+        "name": "BISOPROLOL BGR 7,5 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69458263",
+        "name": "BUPRENORPHINE TEVA 2 mg, comprimé sublingual",
+        "price": 4.35,
+        "rate": 65
+    },
+    {
+        "id": "69464049",
+        "name": "BACTRIM 40 mg/mL + 8 mg/mL, suspension buvable",
+        "price": 5.3,
+        "rate": 65
+    },
+    {
+        "id": "69469719",
+        "name": "BARACLUDE 0,5 mg, comprimé pelliculé",
+        "price": 156.24,
+        "rate": 65
+    },
+    {
+        "id": "69476628",
+        "name": "BISOPROLOL/HYDROCHLOROTHIAZIDE TEVA 2,5 mg/6,25 mg, comprimé pelliculé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69585499",
+        "name": "BISOPROLOL ZYDUS FRANCE 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69650566",
+        "name": "BACLOCUR 20 mg, comprimé pelliculé sécable",
+        "price": 10.04,
+        "rate": 15
+    },
+    {
+        "id": "69653644",
+        "name": "BENEPALI 50 mg, solution injectable en stylo prérempli",
+        "price": 525.97,
+        "rate": 65
+    },
+    {
+        "id": "69658214",
+        "name": "BUPRENORPHINE/NALOXONE VIATRIS 2 mg/0,5 mg, comprimé sublingual sécable",
+        "price": 2.87,
+        "rate": 65
+    },
+    {
+        "id": "69682635",
+        "name": "BILASTINE ARROW 20 mg, comprimé",
+        "price": 2.31,
+        "rate": 30
+    },
+    {
+        "id": "69695547",
+        "name": "BENAZEPRIL EG 5 mg, comprimé pelliculé sécable",
+        "price": 4.66,
+        "rate": 65
+    },
+    {
+        "id": "69710789",
+        "name": "BISOPROLOL BGR 3,75 mg, comprimé pelliculé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69728399",
+        "name": "BUDESONIDE/FORMOTEROL SANDOZ FORSPIRO 160 microgrammes/4,5 microgrammes/dose, poudre pour inhalation en récipient unidose",
+        "price": 27.27,
+        "rate": 65
+    },
+    {
+        "id": "69740106",
+        "name": "BUPENSAN 8 mg, comprimé sublingual",
+        "price": 10.62,
+        "rate": 65
+    },
+    {
+        "id": "69799656",
+        "name": "BISOPROLOL SUN 2,5 mg, comprimé sécable",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69808144",
+        "name": "BISOPROLOL QUIVER 1,25 mg, comprimé",
+        "price": 5.15,
+        "rate": 65
+    },
+    {
+        "id": "69849486",
+        "name": "BISOPROLOL SANDOZ 5 mg, comprimé pelliculé sécable",
+        "price": 3.27,
+        "rate": 65
+    },
+    {
+        "id": "69923050",
+        "name": "BETAHISTINE ARROW 24 mg, comprimé",
+        "price": 6.85,
+        "rate": 30
+    },
+    {
+        "id": "69937274",
+        "name": "BYETTA 10 microgrammes, solution injectable, stylo prérempli",
+        "price": 79.56,
+        "rate": 65
+    },
+    {
+        "id": "69961204",
+        "name": "BRIMONIDINE/TIMOLOL BIOGARAN 2 mg/mL + 5 mg/mL, collyre en solution",
+        "price": 6.76,
+        "rate": 65
+    },
+    {
+        "id": "69978029",
+        "name": "BORAX / ACIDE BORIQUE EG 12 mg/18 mg/ml, solution pour lavage ophtalmique en récipient unidose",
+        "price": 2.89,
+        "rate": 30
+    }
+]

@@ -9,18 +9,18 @@ const {
     getPharmaciesTreeProof,
 } = require('./whitelists/merkletrees');
 
-describe('Prescriptions', function () {
+describe('SocialSecurity', function () {
     async function deployContractFixture() {
         const [owner, ...addrs] = await ethers.getSigners();
-        const PrescriptionsContract = await ethers.getContractFactory('Prescriptions');
-        const prescriptionsContract = await PrescriptionsContract.deploy(
+        const SocialSecurityContract = await ethers.getContractFactory('SocialSecurity');
+        const socialSecurityContract = await SocialSecurityContract.deploy(
             'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/',
             getDoctorsHexMerkleRoot(),
             getPatientsHexMerkleRoot(),
             getPharmaciesHexMerkleRoot(),
         );
 
-        return { contract: prescriptionsContract, owner, addrs };
+        return { contract: socialSecurityContract, owner, addrs };
     }
 
     describe('Deployment', function () {
