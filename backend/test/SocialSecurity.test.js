@@ -169,7 +169,6 @@ describe('SocialSecurity', function () {
 
             const doctor = addrs[1];
             const patient = addrs[7];
-            const addressZero = '0x0000000000000000000000000000000000000000';
 
             await contract
                 .connect(doctor)

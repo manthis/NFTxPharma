@@ -9,7 +9,7 @@ import "./Pharmacy.sol";
 
 contract Laboratory is ERC1155, Ownable {
 
-    Pharmacy private pharmacies_; // the merkle root for pharmacies
+    Pharmacy private pharmaciesMerkleRoot_; // the merkle root for pharmacies
 
     struct Medication { // Structure to store medication data
         string name;
@@ -19,12 +19,12 @@ contract Laboratory is ERC1155, Ownable {
 
     mapping (uint256 => Medication) public medicationsData_; // Mapping to store medication data
 
-    constructor(string memory BaseURI, bytes32 pharmaciesMerkleRoot) ERC1155(BaseURI) Ownable(msg.sender) {
-        pharmacies_ = new Pharmacy(pharmaciesMerkleRoot);
+    constructor(string memory BaseURI, bytes32 pharmaciesMerkleRoot) ERC1155(BaseURI) Ownable(msg.sender) payable {
+        pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
     }
 
     function setPharmaciesMerkleRoot(bytes32 pharmaciesMerkleRoot) public onlyOwner {
-        pharmacies_ = new Pharmacy(pharmaciesMerkleRoot);
+        pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
     }
 
     function addOrUpdateMedicationData(uint256 medicinationId, string memory name, uint256 price, uint256 rate) external onlyOwner {
@@ -55,7 +55,7 @@ contract Laboratory is ERC1155, Ownable {
     }
 
     function mintMedications(uint256[] calldata medicineIds, uint256[] calldata amounts, bytes32[] calldata pharmacyProof) external payable {
-        require(pharmacies_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to mint!");
+        require(pharmaciesMerkleRoot_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to mint!");
 
         uint256 totalPrice = calculateTotalPrice(medicineIds, amounts);
         require(msg.value >= totalPrice, "Unsufficient balance!");
