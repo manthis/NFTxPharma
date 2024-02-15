@@ -1,5 +1,5 @@
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
-const { expect, assert } = require('chai');
+const { expect } = require('chai');
 const {
     getDoctorsHexMerkleRoot,
     getDoctorsTreeProof,

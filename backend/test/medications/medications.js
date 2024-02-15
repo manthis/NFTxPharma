@@ -1,10 +1,10 @@
-import medications from './medications.json';
+const medications = require('./medications.json');
 
 const getMedicationArrays = () => {
-    let ids[];
-    let names[];
-    let prices[];
-    let rates[];
+    let ids = [];
+    let names = [];
+    let prices = [];
+    let rates = [];
 
     return medications.map((medication) => {
         ids.push(medication.id);
@@ -14,4 +14,4 @@ const getMedicationArrays = () => {
     });
 };
 
-export default getMedicationArrays;
+exports.getMedicationArrays = getMedicationArrays;

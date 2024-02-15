@@ -14,6 +14,7 @@ import "./Pharmacy.sol";
 // TODO add events
 // TODO add comments (natspec)
 // TODO add possibility to fix a price for minting
+// TODO add possibility to set merkle trees (setters)
 
 
 /// @custom:security-contact maxime@auburt.in
