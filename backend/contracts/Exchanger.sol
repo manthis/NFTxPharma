@@ -17,6 +17,7 @@ contract Exchanger is ReentrancyGuard {
 
     event OrderPrepared(uint256 orderId);
     event OrderReady(uint256 orderId);
+    event OrderPayed(uint256 orderId);
 
     // Structure pour stocker les informations d'une commande
     struct Order {
@@ -101,5 +102,7 @@ contract Exchanger is ReentrancyGuard {
             // Pas sur d'avoir besoin du parametre data vide de sageTransferFrom
             labContractAddress_.safeTransferFrom(order.pharmacy, msg.sender, order.medicineIds[i], order.amounts[i], "");
         }
+
+        emit OrderPayed(orderId);
     }
 }

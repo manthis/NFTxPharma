@@ -387,5 +387,55 @@ describe('Exchanger', function () {
                 expect(balance).to.equal(quantities[i]);
             }
         });
+
+        it('should emit a OrderPayed event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+            const pharmacy = addrs[13];
+            const patient = addrs[7];
+
+            // We setup the contract of the laboratory and provide the pharmacy with NFTxM
+            await laboratoryContract.addOrUpdateMedicationData(1, 'test1', 1000, 60);
+            await laboratoryContract.addOrUpdateMedicationData(1, 'test2', 6000, 75);
+            await laboratoryContract.addOrUpdateMedicationData(1, 'test3', 9000, 60);
+            const medicineIds = [1, 2, 3];
+            const quantities = [2, 3, 1];
+            const totalPrice = await laboratoryContract.calculateTotalPrice(medicineIds, quantities);
+            await laboratoryContract
+                .connect(pharmacy)
+                .mintMedications(medicineIds, quantities, getPharmaciesTreeProof(pharmacy.address), {
+                    value: totalPrice,
+                });
+
+            // Now the pharmacy has the NFTxM it's time to prepare the order with the Exchanger contract
+            await contract
+                .connect(pharmacy)
+                .prepareOrder(
+                    pharmacy,
+                    patient,
+                    medicineIds,
+                    quantities,
+                    totalPrice,
+                    getPharmaciesTreeProof(pharmacy.address),
+                );
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
+
+            // We must check that the balance in NFTxM of the pharmacy is correct
+            for (let i = 0; i < medicineIds.length; i++) {
+                const balance = await laboratoryContract.balanceOf(pharmacy.address, medicineIds[i]);
+                expect(balance).to.equal(quantities[i]);
+            }
+
+            // We authorize the lab to make the transfer of NFTxM tp the patient in the Laboratory contract
+            await laboratoryContract.connect(pharmacy).setApprovalForAll(contract.target, true);
+
+            // We connect to the Exchanger as a patient to pay the order
+            await expect(
+                contract.connect(patient).payOrder(1, getPatientsTreeProof(patient.address), {
+                    value: totalPrice,
+                }),
+            )
+                .to.emit(contract, 'OrderPayed')
+                .withArgs(1);
+        });
     });
 });
