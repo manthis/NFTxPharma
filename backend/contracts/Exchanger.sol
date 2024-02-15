@@ -16,6 +16,7 @@ contract Exchanger is ReentrancyGuard {
     Patient private patientsMerkleRoot_;
 
     event OrderPrepared(uint256 orderId);
+    event OrderReady(uint256 orderId);
 
     // Structure pour stocker les informations d'une commande
     struct Order {
@@ -24,6 +25,7 @@ contract Exchanger is ReentrancyGuard {
         uint256 totalPrice;
         uint256[] medicineIds;
         uint256[] amounts;
+        bool isReady;
     }
 
     mapping(uint256 => Order) public orders_; // Mapping des commandes
@@ -49,9 +51,23 @@ contract Exchanger is ReentrancyGuard {
         require(medicineIds.length == amounts.length, "Arrays should have the same lengths!");
         
         orderIdCounter_++;
-        orders_[orderIdCounter_] = Order(pharmacy, patient, totalPriceInWei, medicineIds, amounts);
+        orders_[orderIdCounter_] = Order(pharmacy, patient, totalPriceInWei, medicineIds, amounts, false);
 
         emit OrderPrepared(orderIdCounter_);
+    }
+
+    function makeOrderReady(uint256 orderId, bytes32[] calldata pharmacyProof) external {
+        require(pharmaciesMerkleRoot_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to make orders ready!");
+        require(orderId <= orderIdCounter_, "Order does not exist!");
+
+        orders_[orderId].isReady = true;
+
+        emit OrderReady(orderId);
+    }
+
+    function isOrderReady(uint256 orderId) external view returns (bool) {
+        require(orderId <= orderIdCounter_, "Order does not exist!");
+        return orders_[orderId].isReady;
     }
 
     function getOrderPrice(uint256 orderId, bytes32[] calldata patientProof) external view returns (uint256) {
@@ -70,6 +86,8 @@ contract Exchanger is ReentrancyGuard {
 
         address orderPatient = orders_[orderId].patient;
         require(orderPatient == msg.sender, "This order has not been prepared for you!");
+
+        require(orders_[orderId].isReady, "Order must be made ready by pharmacy");
 
         Order storage order = orders_[orderId];
         require(msg.value == order.totalPrice, "Amount of ETH sent must be equal to order total price.");

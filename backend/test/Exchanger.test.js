@@ -121,6 +121,68 @@ describe('Exchanger', function () {
         });
     });
 
+    describe('makeOrderReady', function () {
+        it('should revert when not called by a valid pharmacy', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+
+            const pharmacy = addrs[13];
+
+            await expect(contract.makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address))).to.be.revertedWith(
+                'Only pharmacies are allowed to make orders ready!',
+            );
+        });
+
+        it('should revert if order id does not exist', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+
+            const pharmacy = addrs[13];
+
+            await expect(
+                contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address)),
+            ).to.be.revertedWith('Order does not exist!');
+        });
+
+        it('should made the order ready', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+
+            const pharmacy = addrs[13];
+            const patient = addrs[7];
+
+            await contract
+                .connect(pharmacy)
+                .prepareOrder(pharmacy, patient, [1, 1], [1, 1], 1000, getPharmaciesTreeProof(pharmacy.address));
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
+
+            const isReady = await contract.isOrderReady(1);
+            expect(isReady).to.equal(true);
+        });
+
+        it('should emit an OrderReady event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+
+            const pharmacy = addrs[13];
+            const patient = addrs[7];
+
+            await contract
+                .connect(pharmacy)
+                .prepareOrder(pharmacy, patient, [1, 1], [1, 1], 1000, getPharmaciesTreeProof(pharmacy.address));
+            await expect(contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address)))
+                .to.emit(contract, 'OrderReady')
+                .withArgs(1);
+        });
+    });
+
+    describe('isOrderReady', function () {
+        it('should revert if orderId does not exist', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+
+            const pharmacy = addrs[13];
+            const patient = addrs[7];
+
+            await expect(contract.isOrderReady(1)).to.be.revertedWith('Order does not exist!');
+        });
+    });
+
     describe('getOrderPrice', function () {
         it('should revert if not called by a valid patient', async function () {
             const { contract, addrs } = await loadFixture(deployContractsFixture);
@@ -205,6 +267,20 @@ describe('Exchanger', function () {
             ).to.be.revertedWith('This order has not been prepared for you!');
         });
 
+        it('should revert if order is not ready', async function () {
+            const { contract, addrs } = await loadFixture(deployContractsFixture);
+            const pharmacy = addrs[13];
+            const patient = addrs[7];
+
+            await contract
+                .connect(pharmacy)
+                .prepareOrder(pharmacy, patient, [1, 1], [1, 1], 10000, getPharmaciesTreeProof(pharmacy.address));
+
+            await expect(
+                contract.connect(patient).payOrder(1, getPatientsTreeProof(patient.address)),
+            ).to.be.revertedWith('Order must be made ready by pharmacy');
+        });
+
         it('should revert if sent amount does not cover order price', async function () {
             const { contract, addrs } = await loadFixture(deployContractsFixture);
             const pharmacy = addrs[13];
@@ -213,6 +289,7 @@ describe('Exchanger', function () {
             await contract
                 .connect(pharmacy)
                 .prepareOrder(pharmacy, patient, [1, 1], [1, 1], 10000, getPharmaciesTreeProof(pharmacy.address));
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
 
             await expect(
                 contract.connect(patient).payOrder(1, getPatientsTreeProof(patient.address)),
@@ -228,6 +305,7 @@ describe('Exchanger', function () {
             await contract
                 .connect(pharmacy)
                 .prepareOrder(pharmacy, patient, [1, 1], [1, 1], totalPrice, getPharmaciesTreeProof(pharmacy.address));
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
 
             await expect(
                 contract.connect(patient).payOrder(1, getPatientsTreeProof(patient.address), {
@@ -245,6 +323,7 @@ describe('Exchanger', function () {
             await contract
                 .connect(pharmacy)
                 .prepareOrder(pharmacy, patient, [1, 1], [1, 1], totalPrice, getPharmaciesTreeProof(pharmacy.address));
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
             await laboratoryContract.connect(pharmacy).setApprovalForAll(contract.target, true);
 
             await expect(
@@ -283,6 +362,7 @@ describe('Exchanger', function () {
                     totalPrice,
                     getPharmaciesTreeProof(pharmacy.address),
                 );
+            await contract.connect(pharmacy).makeOrderReady(1, getPharmaciesTreeProof(pharmacy.address));
 
             // We must check that the balance in NFTxM of the pharmacy is correct
             for (let i = 0; i < medicineIds.length; i++) {
