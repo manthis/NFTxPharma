@@ -43,7 +43,7 @@ describe('SocialSecurity', function () {
         });
 
         it('should pass when called by a doctor', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
             await expect(
                 contract
                     .connect(addrs[1])
@@ -69,7 +69,7 @@ describe('SocialSecurity', function () {
         });
 
         it('should provide with consecutive tokenIds', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
 
             expect(await contract.tokenId_()).to.equal(0);
 
@@ -93,7 +93,7 @@ describe('SocialSecurity', function () {
         });
 
         it('should send the Prescription NFT to the patient', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
 
             const doctor = addrs[1];
             const patient = addrs[7];
@@ -107,6 +107,25 @@ describe('SocialSecurity', function () {
                 );
 
             expect(await contract.ownerOf(0)).to.equal(patient.address);
+        });
+
+        it('should emit a TokenMinted event', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+
+            await expect(
+                contract
+                    .connect(doctor)
+                    .mintPrescription(
+                        patient.address,
+                        getDoctorsTreeProof(doctor.address),
+                        getPatientsTreeProof(patient.address),
+                    ),
+            )
+                .to.emit(contract, 'TokenMinted')
+                .withArgs(0, patient.address, 'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/0.json');
         });
     });
 
@@ -191,7 +210,7 @@ describe('SocialSecurity', function () {
         });
 
         it('should not revert when transferring from a patient to a pharmacy', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
 
             const doctor = addrs[1];
             const patient = addrs[7];
@@ -218,7 +237,7 @@ describe('SocialSecurity', function () {
         });
 
         it('should have transferred the prescription to the pharmacy', async function () {
-            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+            const { contract, addrs } = await loadFixture(deployContractFixture);
 
             const doctor = addrs[1];
             const patient = addrs[7];
@@ -242,6 +261,35 @@ describe('SocialSecurity', function () {
                 );
 
             expect(await contract.ownerOf(0)).to.equal(pharmacy.address);
+        });
+
+        it('should emit a TokenTransferredToPharmacy event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const pharmacy = addrs[13];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            await expect(
+                contract
+                    .connect(patient)
+                    .transferToPharmacy(
+                        getPatientsTreeProof(patient.address),
+                        pharmacy,
+                        getPharmaciesTreeProof(pharmacy.address),
+                        0,
+                    ),
+            )
+                .to.emit(contract, 'TokenTransferredToPharmacy')
+                .withArgs(0, patient.address, pharmacy.address);
         });
     });
 
@@ -280,6 +328,44 @@ describe('SocialSecurity', function () {
             expect(contract.connect(addrs[10]).setBaseURI('URI'))
                 .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[10].address);
+        });
+
+        it('should emit a BaseURISet event', async function () {
+            const { contract } = await loadFixture(deployContractFixture);
+            expect(contract.setBaseURI('URI')).to.emit(contract, 'BaseURISet').withArgs('URI');
+        });
+    });
+
+    describe('Burn', function () {
+        it('should be able to burn the prescription when needed', async function () {
+            const { contract, owner, addrs } = await loadFixture(deployContractFixture);
+
+            const doctor = addrs[1];
+            const patient = addrs[7];
+            const pharmacy = addrs[13];
+
+            await contract
+                .connect(doctor)
+                .mintPrescription(
+                    patient.address,
+                    getDoctorsTreeProof(doctor.address),
+                    getPatientsTreeProof(patient.address),
+                );
+
+            await contract
+                .connect(patient)
+                .transferToPharmacy(
+                    getPatientsTreeProof(patient.address),
+                    pharmacy,
+                    getPharmaciesTreeProof(pharmacy.address),
+                    0,
+                );
+
+            await contract.connect(pharmacy).burn(0);
+
+            await expect(contract.ownerOf(0))
+                .to.be.revertedWithCustomError(contract, 'ERC721NonexistentToken')
+                .withArgs(0);
         });
     });
 

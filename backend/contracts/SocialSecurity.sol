@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -18,7 +18,7 @@ import "./Pharmacy.sol";
 
 
 /// @custom:security-contact maxime@auburt.in
-contract SocialSecurity is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
+contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable {
 
     using Strings for uint;
 
@@ -28,6 +28,10 @@ contract SocialSecurity is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
     uint256 public tokenId_;
     string private baseURI_;
+
+    event BaseURISet(string baseURI);
+    event TokenMinted(uint256 tokenId, address to, string tokenURI);
+    event TokenTransferredToPharmacy(uint256 tokenId, address from, address to);
 
     constructor(string memory baseURI, bytes32 doctorsMerkleTree, bytes32 patientsMerkleTree, bytes32 pharmaciesMerkleTree) ERC721("PrescriptionNFT", "NFTxP") Ownable(msg.sender)
     {
@@ -39,6 +43,8 @@ contract SocialSecurity is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
     function setBaseURI(string calldata baseURI) external onlyOwner {
         baseURI_ = baseURI;
+
+        emit BaseURISet(baseURI_);
     }
 
     function getBaseURI() external view returns(string memory) {
@@ -51,8 +57,11 @@ contract SocialSecurity is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         
         _safeMint(to, tokenId_);
 
-        string memory tmp = string(abi.encodePacked(baseURI_, tokenId_.toString(), ".json"));
-        _setTokenURI(tokenId_, tmp);
+        string memory tokenFullURI = string(abi.encodePacked(baseURI_, tokenId_.toString(), ".json"));
+        _setTokenURI(tokenId_, tokenFullURI);
+
+        emit TokenMinted(tokenId_, to, tokenFullURI);
+
         tokenId_ += 1;
     }
 
@@ -70,12 +79,13 @@ contract SocialSecurity is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
         // We perform the transfer 
         _update(to, tokenId, _msgSender());
+
+        emit TokenTransferredToPharmacy(tokenId, msg.sender, to);
     }
 
     // The following function is an override required by Solidity.
 
-    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 
