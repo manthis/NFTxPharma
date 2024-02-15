@@ -33,48 +33,39 @@ describe('SocialSecurity', function () {
     describe('mintPrescription', function () {
         it('should revert when not called by a doctor', async function () {
             const { contract, owner, addrs } = await loadFixture(deployContractFixture);
-            try {
-                await contract.mintPrescription(
+            await expect(
+                contract.mintPrescription(
                     addrs[7].address,
                     getDoctorsTreeProof(owner.address),
                     getPatientsTreeProof(addrs[7].address),
-                );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Only doctors are allowed to mint prescriptions!');
-            }
+                ),
+            ).to.be.revertedWith('Only doctors are allowed to mint prescriptions!');
         });
 
         it('should pass when called by a doctor', async function () {
             const { contract, owner, addrs } = await loadFixture(deployContractFixture);
-            try {
-                await contract
+            await expect(
+                contract
                     .connect(addrs[1])
                     .mintPrescription(
                         addrs[7].address,
                         getDoctorsTreeProof(addrs[1].address),
                         getPatientsTreeProof(addrs[7].address),
-                    );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Transaction did not revert');
-            }
+                    ),
+            ).not.to.be.reverted;
         });
 
         it('should fail if "to" is not a patient', async function () {
             const { contract, owner, addrs } = await loadFixture(deployContractFixture);
-            try {
-                await contract
+            await expect(
+                contract
                     .connect(addrs[1])
                     .mintPrescription(
                         owner.address,
                         getDoctorsTreeProof(addrs[1].address),
                         getPatientsTreeProof(owner.address),
-                    );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Only patients can receive prescriptions!');
-            }
+                    ),
+            ).to.be.revertedWith('Only patients can receive prescriptions!');
         });
 
         it('should provide with consecutive tokenIds', async function () {
@@ -134,17 +125,14 @@ describe('SocialSecurity', function () {
                     getPatientsTreeProof(patient.address),
                 );
 
-            try {
-                await contract.transferToPharmacy(
+            await expect(
+                contract.transferToPharmacy(
                     getPatientsTreeProof(patient.address),
                     doctor.address,
                     getPharmaciesTreeProof(doctor.address),
                     0,
-                );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Only patients can transfer prescriptions!');
-            }
+                ),
+            ).to.be.revertedWith('Only patients can transfer prescriptions!');
         });
 
         it('should not be able to transfer to 0x0 address', async function () {
@@ -191,19 +179,16 @@ describe('SocialSecurity', function () {
                     getPatientsTreeProof(patient.address),
                 );
 
-            try {
-                await contract
+            await expect(
+                contract
                     .connect(patient)
                     .transferToPharmacy(
                         getPatientsTreeProof(patient.address),
                         owner.address,
                         getPharmaciesTreeProof(owner.address),
                         0,
-                    );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Patients can only transfer presciptions to pharmacies!');
-            }
+                    ),
+            ).to.be.revertedWith('Patients can only transfer presciptions to pharmacies!');
         });
 
         it('should not revert when transferring from a patient to a pharmacy', async function () {
@@ -221,19 +206,16 @@ describe('SocialSecurity', function () {
                     getPatientsTreeProof(patient.address),
                 );
 
-            try {
-                await contract
+            await expect(
+                contract
                     .connect(patient)
                     .transferToPharmacy(
                         getPatientsTreeProof(patient.address),
                         pharmacy,
                         getPharmaciesTreeProof(pharmacy.address),
                         0,
-                    );
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Transaction did not revert');
-            }
+                    ),
+            ).not.to.be.reverted;
         });
 
         it('should have transferred the prescription to the pharmacy', async function () {
@@ -267,12 +249,7 @@ describe('SocialSecurity', function () {
     describe('tokenURI', function () {
         it('should revert if token does not exist', async function () {
             const { contract } = await loadFixture(deployContractFixture);
-            try {
-                await contract.tokenURI(0);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Token does not exist!');
-            }
+            await expect(contract.tokenURI(0)).to.be.revertedWith('Token does not exist!');
         });
 
         it('should return the correct tokenURI for a provided existing tokenId', async function () {
@@ -319,73 +296,45 @@ describe('SocialSecurity', function () {
         it('should revert when calling "approve"', async function () {
             const { contract, owner } = await loadFixture(deployContractFixture);
 
-            try {
-                // TODO NE FONCTIONNE PAS: le teste passe quelque soit le message
-                // expect(prescriptions.approve(owner.address, 1)).to.be.revertedWith('Not implemented in Prescriptions');
-
-                // FIX
-                // Exécuter la transaction qui devrait échouer
-                await contract.approve(owner.address, 1);
-                // Forcer l'échec du test si la transaction ne revert pas
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.approve(owner.address, 1)).to.be.revertedWith('Not implemented in Prescriptions');
         });
 
         it('should revert when calling "getApproved"', async function () {
             const { contract } = await loadFixture(deployContractFixture);
 
-            try {
-                await contract.getApproved(1);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.getApproved(1)).to.be.revertedWith('Not implemented in Prescriptions');
         });
 
         it('should revert when calling "setApprovalForAll"', async function () {
             const { contract, owner } = await loadFixture(deployContractFixture);
 
-            try {
-                await contract.setApprovalForAll(owner.address, 1);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.setApprovalForAll(owner.address, 1)).to.be.revertedWith(
+                'Not implemented in Prescriptions',
+            );
         });
 
         it('should revert when calling "isApprovedForAll"', async function () {
             const { contract, owner } = await loadFixture(deployContractFixture);
 
-            try {
-                await contract.isApprovedForAll(owner.address, owner.address);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.isApprovedForAll(owner.address, owner.address)).to.be.revertedWith(
+                'Not implemented in Prescriptions',
+            );
         });
 
         it('should revert when calling "transferFrom"', async function () {
             const { contract, owner } = await loadFixture(deployContractFixture);
 
-            try {
-                await contract.transferFrom(owner.address, owner.address, 1);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.transferFrom(owner.address, owner.address, 1)).to.be.revertedWith(
+                'Not implemented in Prescriptions',
+            );
         });
 
         it('should revert when calling "safeTransferFrom"', async function () {
             const { contract, owner } = await loadFixture(deployContractFixture);
 
-            try {
-                await contract.safeTransferFrom(owner.address, owner.address, 1);
-                assert.fail('Transaction did not revert');
-            } catch (error) {
-                assert.include(error.message, 'Not implemented in Prescriptions');
-            }
+            await expect(contract.safeTransferFrom(owner.address, owner.address, 1)).to.be.revertedWith(
+                'Not implemented in Prescriptions',
+            );
         });
     });
 });
