@@ -11,6 +11,10 @@ contract Laboratory is ERC1155, Ownable {
 
     Pharmacy private pharmaciesMerkleRoot_; // the merkle root for pharmacies
 
+    event PharmacyMerkleRootSet(bytes32);
+    event MedicationDataUpdated(uint256, string, uint256, uint256);
+    event MedicationMinted(uint256, address);
+
     struct Medication { // Structure to store medication data
         string name;
         uint256 price;
@@ -25,6 +29,7 @@ contract Laboratory is ERC1155, Ownable {
 
     function setPharmaciesMerkleRoot(bytes32 pharmaciesMerkleRoot) public onlyOwner {
         pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
+        emit PharmacyMerkleRootSet(pharmaciesMerkleRoot);
     }
 
     function addOrUpdateMedicationData(uint256 medicinationId, string memory name, uint256 price, uint256 rate) external onlyOwner {
@@ -33,6 +38,7 @@ contract Laboratory is ERC1155, Ownable {
            price: price,
            rate: rate
        });
+       emit MedicationDataUpdated(medicinationId, name, price, rate);
     }
 
     function getMedicationData(uint256 medicationId) external view returns (string memory, uint256, uint256) {
@@ -68,5 +74,7 @@ contract Laboratory is ERC1155, Ownable {
         if (msg.value > totalPrice) {
             payable(msg.sender).transfer(msg.value - totalPrice);
         }
+
+        emit MedicationMinted(totalPrice, msg.sender);
     }
 }

@@ -20,7 +20,7 @@ describe('Laboratory', function () {
 
     describe('setPharmaciesMerkleRoot', function () {
         it('should be set and not reverted when called by admin', async function () {
-            const { contract, addrs } = await loadFixture(deployContractFixture);
+            const { contract } = await loadFixture(deployContractFixture);
             await expect(contract.setPharmaciesMerkleRoot(getPharmaciesHexMerkleRoot())).not.to.be.reverted;
         });
 
@@ -29,6 +29,14 @@ describe('Laboratory', function () {
             expect(contract.connect(addrs[1]).setPharmaciesMerkleRoot(getPharmaciesHexMerkleRoot()))
                 .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[1].address);
+        });
+
+        it('should emit a PharmacyMerkleRootSet event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            const pharmacyMR = getPharmaciesHexMerkleRoot();
+            await expect(contract.setPharmaciesMerkleRoot(pharmacyMR))
+                .to.emit(contract, 'PharmacyMerkleRootSet')
+                .withArgs(pharmacyMR);
         });
     });
 
@@ -47,6 +55,13 @@ describe('Laboratory', function () {
             expect(result[0]).to.equal('test');
             expect(result[1]).to.equal(1);
             expect(result[2]).to.equal(60);
+        });
+
+        it('should emit a MedicationDataUpdated event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await expect(contract.addOrUpdateMedicationData(1, 'test', 1, 60))
+                .to.emit(contract, 'MedicationDataUpdated')
+                .withArgs(1, 'test', 1, 60);
         });
     });
 
@@ -176,6 +191,28 @@ describe('Laboratory', function () {
                 balanceBeforeInWei - excessAmountInWei + (excessAmountInWei - (totalPriceInWei + estimatedGasCost));
 
             expect(balanceAfterInWei).to.equal(expectedBalanceInWei); // Ensure excess payment was refunded
+        });
+
+        it('should emit a MedicationMinted event', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await contract.addOrUpdateMedicationData(1, 'test1', 1000, 60);
+            await contract.addOrUpdateMedicationData(2, 'test2', 6000, 75);
+            await contract.addOrUpdateMedicationData(3, 'test3', 9000, 60);
+            const pharmacy = addrs[13];
+
+            const medicineIds = [1, 2, 3];
+            const quantities = [1, 2, 3];
+
+            const totalPrice = await contract.calculateTotalPrice(medicineIds, quantities);
+            await expect(
+                contract
+                    .connect(pharmacy)
+                    .mintMedications(medicineIds, quantities, getPharmaciesTreeProof(pharmacy.address), {
+                        value: totalPrice,
+                    }),
+            )
+                .to.emit(contract, 'MedicationMinted')
+                .withArgs(totalPrice, pharmacy.address);
         });
     });
 });
