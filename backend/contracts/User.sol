@@ -26,8 +26,9 @@ contract User is IUser, Ownable {
     /// @notice Sets a new Merkle hex root for users
     /// @dev Can only be called by the contract owner
     /// @param hexMerkleRoot The new Merkle hex root for users
-    function setMerkleRoot(bytes32 hexMerkleRoot) public virtual {
+    function setMerkleRoot(bytes32 hexMerkleRoot) public virtual onlyOwner {
         hexMerkleRoot_ = hexMerkleRoot;
+        emit UpdatedMerkleRoot(hexMerkleRoot);
     }
 
     /// @notice Verifies whether a given address is a verified user
