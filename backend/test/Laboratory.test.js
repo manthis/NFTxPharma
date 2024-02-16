@@ -5,8 +5,14 @@ const { getPharmaciesHexMerkleRoot, getPharmaciesTreeProof } = require('./whitel
 describe('Laboratory', function () {
     async function deployContractFixture() {
         const [owner, ...addrs] = await ethers.getSigners();
+
+        // Pharmacy contract
+        const PharmacyContract = await ethers.getContractFactory('Pharmacy');
+        const pharmacyContract = await PharmacyContract.deploy(getPharmaciesHexMerkleRoot());
+
+        // Laboratory contract
         const LaboratoryContract = await ethers.getContractFactory('Laboratory');
-        const laboratoryContract = await LaboratoryContract.deploy('ipfs://', getPharmaciesHexMerkleRoot());
+        const laboratoryContract = await LaboratoryContract.deploy('ipfs://', pharmacyContract.target);
 
         return { contract: laboratoryContract, owner, addrs };
     }
@@ -18,25 +24,24 @@ describe('Laboratory', function () {
         });
     });
 
-    describe('setPharmaciesMerkleRoot', function () {
-        it('should be set and not reverted when called by admin', async function () {
-            const { contract } = await loadFixture(deployContractFixture);
-            await expect(contract.setPharmaciesMerkleRoot(getPharmaciesHexMerkleRoot())).not.to.be.reverted;
-        });
-
-        it('should revert when not called by admin', async function () {
+    describe('setPharmacyContractAddress', function () {
+        it('should revert when not called by the admin', async function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
-            expect(contract.connect(addrs[1]).setPharmaciesMerkleRoot(getPharmaciesHexMerkleRoot()))
+            expect(contract.connect(addrs[1]).setPharmacyContractAddress(addrs[1].address))
                 .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[1].address);
         });
 
-        it('should emit a PharmacyMerkleRootSet event', async function () {
+        it('should set the pharmacy contract address when called by the admin', async function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
-            const pharmacyMR = getPharmaciesHexMerkleRoot();
-            await expect(contract.setPharmaciesMerkleRoot(pharmacyMR))
-                .to.emit(contract, 'PharmacyMerkleRootSet')
-                .withArgs(pharmacyMR);
+            await expect(contract.setPharmacyContractAddress(addrs[1].address)).not.to.be.reverted;
+        });
+
+        it('should emit a PharmacyContractAddressSet event when called by the admin', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await expect(contract.setPharmacyContractAddress(addrs[1].address))
+                .to.emit(contract, 'PharmacyContractAddressSet')
+                .withArgs(addrs[1].address);
         });
     });
 

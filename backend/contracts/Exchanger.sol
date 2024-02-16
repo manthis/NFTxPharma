@@ -6,8 +6,8 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol"; 
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-import "./Pharmacy.sol";
-import "./Patient.sol";
+import "./extensions/IPharmacy.sol";
+import "./extensions/IPatient.sol";
 
 /// @title Medicine Exchange Contract
 /// @author Maxime AUBURTIN
@@ -20,9 +20,9 @@ contract Exchanger is ReentrancyGuard {
     IERC1155 public labContractAddress_; 
 
     /// @dev Reference to Pharmacy contract for pharmacy verification
-    Pharmacy private pharmaciesMerkleRoot_;
+    IPharmacy private pharmaContractAddress_;
     /// @dev Reference to Patient contract for patient verification
-    Patient private patientsMerkleRoot_;
+    IPatient private patientContractAddress_;
 
     /// @notice Event emitted when an order is prepared
     event OrderPrepared(uint256 orderId);
@@ -48,12 +48,12 @@ contract Exchanger is ReentrancyGuard {
 
     /// @notice Constructor to set initial contract addresses and Merkle roots
     /// @param laboratoryContractAddress Address of the NFT contract for medicines
-    /// @param pharmaciesMerkleRoot Merkle root for verifying pharmacies
-    /// @param patientsMerkleRoot Merkle root for verifying patients
-    constructor(address laboratoryContractAddress, bytes32 pharmaciesMerkleRoot, bytes32 patientsMerkleRoot) {
+    /// @param pharmaContract Address of the contract for verifying pharmacies
+    /// @param patientContract Address of the contract for verifying patients
+    constructor(address laboratoryContractAddress, address pharmaContract, address patientContract) {
         labContractAddress_ = IERC1155(laboratoryContractAddress);
-        pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
-        patientsMerkleRoot_ = new Patient(patientsMerkleRoot);
+        pharmaContractAddress_ = IPharmacy(pharmaContract);
+        patientContractAddress_ = IPatient(patientContract);
         orderIdCounter_ = 0;
     }
 
@@ -73,7 +73,7 @@ contract Exchanger is ReentrancyGuard {
         uint256 totalPriceInWei, 
         bytes32[] calldata pharmacyProof
     ) external {
-        require(pharmaciesMerkleRoot_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to prepare orders!");
+        require(pharmaContractAddress_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to prepare orders!");
         require(pharmacy == msg.sender, "Provided pharmacy must be the one calling this function!");
         require(medicineIds.length == amounts.length, "Arrays should have the same lengths!");
         
@@ -88,7 +88,7 @@ contract Exchanger is ReentrancyGuard {
     /// @param orderId ID of the order to mark as ready
     /// @param pharmacyProof Merkle proof to verify the pharmacy
     function makeOrderReady(uint256 orderId, bytes32[] calldata pharmacyProof) external {
-        require(pharmaciesMerkleRoot_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to make orders ready!");
+        require(pharmaContractAddress_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to make orders ready!");
         require(orderId <= orderIdCounter_, "Order does not exist!");
 
         orders_[orderId].isReady = true;
@@ -110,7 +110,7 @@ contract Exchanger is ReentrancyGuard {
     /// @param patientProof Merkle proof to verify the patient
     /// @return uint256 Total price of the order in Wei
     function getOrderPrice(uint256 orderId, bytes32[] calldata patientProof) external view returns (uint256) {
-        require(patientsMerkleRoot_.isPatient(msg.sender, patientProof), "Only patients are allowed to check their order price!");
+        require(patientContractAddress_.isPatient(msg.sender, patientProof), "Only patients are allowed to check their order price!");
         require(orderId <= orderIdCounter_, "Order does not exist!");
 
         address orderPatient = orders_[orderId].patient;
@@ -124,7 +124,7 @@ contract Exchanger is ReentrancyGuard {
     /// @param orderId ID of the order to pay
     /// @param patientProof Merkle proof to verify the patient
     function payOrder(uint256 orderId, bytes32[] calldata patientProof) external payable nonReentrant {
-        require(patientsMerkleRoot_.isPatient(msg.sender, patientProof), "Only patients are allowed to check their order price!");
+        require(patientContractAddress_.isPatient(msg.sender, patientProof), "Only patients are allowed to check their order price!");
         require(orderId <= orderIdCounter_, "Order does not exist!");
 
         address orderPatient = orders_[orderId].patient;

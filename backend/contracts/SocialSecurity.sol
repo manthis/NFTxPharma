@@ -7,11 +7,9 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-import "./Doctor.sol";
-import "./Patient.sol";
-import "./Pharmacy.sol";
-
-// TODO add comments (natspec) in all contracts
+import "./extensions/IDoctor.sol";
+import "./extensions/IPatient.sol";
+import "./extensions/IPharmacy.sol";
 
 
 /// @title Prescription NFT (NFTxP) Management for Social Security System
@@ -24,11 +22,11 @@ contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable {
     using Strings for uint;
 
     /// @dev Reference to Doctor contract for doctor verification
-    Doctor private doctors_;
+    IDoctor private doctors_;
     /// @dev Reference to Patient contract for patient verification
-    Patient private patients_;
+    IPatient private patients_;
     /// @dev Reference to Pharmacy contract for pharmacy verification
-    Pharmacy private pharmacies_;
+    IPharmacy private pharmacies_;
 
     /// @notice Tracks the next token ID to be minted
     uint256 public tokenId_;
@@ -44,14 +42,14 @@ contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable {
 
     /// @notice Constructor to initialize contract with base URI and Merkle roots for verification
     /// @param baseURI Base URI for token metadata
-    /// @param doctorsMerkleTree Merkle root for doctor verification
-    /// @param patientsMerkleTree Merkle root for patient verification
-    /// @param pharmaciesMerkleTree Merkle root for pharmacy verification
-    constructor(string memory baseURI, bytes32 doctorsMerkleTree, bytes32 patientsMerkleTree, bytes32 pharmaciesMerkleTree) ERC721("PrescriptionNFT", "NFTxP") Ownable(msg.sender)
+    /// @param doctorContractAddress The address of the Doctor contract
+    /// @param patienContractAddress The address of the Patient contract
+    /// @param pharmacyContractAdress The address of the Pharmacy contract
+    constructor(string memory baseURI, address doctorContractAddress, address patienContractAddress, address pharmacyContractAdress) ERC721("PrescriptionNFT", "NFTxP") Ownable(msg.sender)
     {
-        doctors_ = new Doctor(doctorsMerkleTree);
-        patients_ = new Patient(patientsMerkleTree);
-        pharmacies_ = new Pharmacy(pharmaciesMerkleTree);
+        doctors_ = IDoctor(doctorContractAddress);
+        patients_ = IPatient(patienContractAddress);
+        pharmacies_ = IPharmacy(pharmacyContractAdress);
         baseURI_ = baseURI;
     }
 

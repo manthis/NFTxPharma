@@ -12,12 +12,26 @@ const {
 describe('SocialSecurity', function () {
     async function deployContractFixture() {
         const [owner, ...addrs] = await ethers.getSigners();
+
+        // Doctor contract
+        const DoctorContract = await ethers.getContractFactory('Doctor');
+        const doctorContract = await DoctorContract.deploy(getDoctorsHexMerkleRoot());
+
+        // Pharmacy contract
+        const PharmacyContract = await ethers.getContractFactory('Pharmacy');
+        const pharmacyContract = await PharmacyContract.deploy(getPharmaciesHexMerkleRoot());
+
+        // Patient contract
+        const PatientContract = await ethers.getContractFactory('Patient');
+        const patientContract = await PatientContract.deploy(getPatientsHexMerkleRoot());
+
+        // Social Security contract
         const SocialSecurityContract = await ethers.getContractFactory('SocialSecurity');
         const socialSecurityContract = await SocialSecurityContract.deploy(
             'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/',
-            getDoctorsHexMerkleRoot(),
-            getPatientsHexMerkleRoot(),
-            getPharmaciesHexMerkleRoot(),
+            doctorContract.target,
+            patientContract.target,
+            pharmacyContract.target,
         );
 
         return { contract: socialSecurityContract, owner, addrs };

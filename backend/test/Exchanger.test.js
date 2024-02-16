@@ -16,16 +16,24 @@ describe('Exchanger', function () {
     async function deployContractsFixture() {
         const [owner, ...addrs] = await ethers.getSigners();
 
+        // Patient contract
+        const PatientContract = await ethers.getContractFactory('Patient');
+        patientContract = await PatientContract.deploy(getPatientsHexMerkleRoot());
+
+        // Pharmacy contract
+        const PharmacyContract = await ethers.getContractFactory('Pharmacy');
+        pharmacyContract = await PharmacyContract.deploy(getPharmaciesHexMerkleRoot());
+
         // Laboratory contract
         const LaboratoryContract = await ethers.getContractFactory('Laboratory');
-        laboratoryContract = await LaboratoryContract.deploy('ipfs://', getPharmaciesHexMerkleRoot());
+        laboratoryContract = await LaboratoryContract.deploy('ipfs://', pharmacyContract.target);
 
         // Exchanger contract
         const ExchangerContract = await ethers.getContractFactory('Exchanger');
         exchangerContract = await ExchangerContract.deploy(
             laboratoryContract.target,
-            getPharmaciesHexMerkleRoot(),
-            getPatientsHexMerkleRoot(),
+            pharmacyContract.target,
+            patientContract.target,
         );
 
         return { contract: exchangerContract, owner, addrs };

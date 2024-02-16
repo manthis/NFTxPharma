@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-import "./Pharmacy.sol";
+import "./extensions/IPharmacy.sol";
 
 /// @title Laboratory Medication Management and Minting (NFTxM)
 /// @author Maxime AUBURTIN
@@ -15,10 +15,10 @@ import "./Pharmacy.sol";
 contract Laboratory is ERC1155, Ownable {
 
     /// @dev Reference to Pharmacy contract for pharmacy verification
-    Pharmacy private pharmaciesMerkleRoot_; 
+    IPharmacy private pharmaContract_; 
 
-    /// @notice Emitted when the Pharmacy Merkle root is updated
-    event PharmacyMerkleRootSet(bytes32);
+    /// @notice Emitted when the Pharmacy contract address is updated
+    event PharmacyContractAddressSet(address);
     /// @notice Emitted when medication data is updated
     event MedicationDataUpdated(uint256, string, uint256, uint256);
     /// @notice Emitted when a medication (NFTxM) is minted
@@ -34,19 +34,16 @@ contract Laboratory is ERC1155, Ownable {
     /// @dev Mapping of medication IDs to their data
     mapping (uint256 => Medication) public medicationsData_; // Mapping to store medication data
 
-    /// @notice Constructor to set base URI and initial pharmacies Merkle root
-    /// @param BaseURI URI for token metadata
-    /// @param pharmaciesMerkleRoot Merkle root for verifying pharmacies
-    constructor(string memory BaseURI, bytes32 pharmaciesMerkleRoot) ERC1155(BaseURI) Ownable(msg.sender) {
-        pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
+    /// @notice Constructor to initialize contract with base URI and Merkle roots for verification
+    /// @param BaseURI Base URI for token metadata
+    /// @param pharmaContractAddress The address of the Pharmacy contract
+    constructor(string memory BaseURI, address pharmaContractAddress) ERC1155(BaseURI) Ownable(msg.sender) {
+        pharmaContract_ = IPharmacy(pharmaContractAddress);
     }
 
-    /// @notice Updates the pharmacies Merkle root
-    /// @dev Can only be called by the contract owner
-    /// @param pharmaciesMerkleRoot New Merkle root for pharmacies verification
-    function setPharmaciesMerkleRoot(bytes32 pharmaciesMerkleRoot) public onlyOwner {
-        pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
-        emit PharmacyMerkleRootSet(pharmaciesMerkleRoot);
+    function setPharmacyContractAddress(address pharmaContractAddress) public onlyOwner {
+        pharmaContract_ = IPharmacy(pharmaContractAddress);
+        emit PharmacyContractAddressSet(pharmaContractAddress);
     }
 
     /// @notice Adds or updates medication data
@@ -98,7 +95,7 @@ contract Laboratory is ERC1155, Ownable {
     /// @param amounts Array of amounts for each medication ID
     /// @param pharmacyProof Merkle proof to verify the calling pharmacy
     function mintMedications(uint256[] calldata medicineIds, uint256[] calldata amounts, bytes32[] calldata pharmacyProof) external payable {
-        require(pharmaciesMerkleRoot_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to mint!");
+        require(pharmaContract_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to mint!");
 
         uint256 totalPrice = calculateTotalPrice(medicineIds, amounts);
         require(msg.value >= totalPrice, "Unsufficient balance!");
