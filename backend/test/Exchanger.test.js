@@ -18,9 +18,7 @@ describe('Exchanger', function () {
 
         // Laboratory contract
         const LaboratoryContract = await ethers.getContractFactory('Laboratory');
-        laboratoryContract = await LaboratoryContract.deploy('ipfs://', getPharmaciesHexMerkleRoot(), {
-            value: ethers.parseEther('1'),
-        });
+        laboratoryContract = await LaboratoryContract.deploy('ipfs://', getPharmaciesHexMerkleRoot());
 
         // Exchanger contract
         const ExchangerContract = await ethers.getContractFactory('Exchanger');

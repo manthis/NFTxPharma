@@ -1,4 +1,4 @@
-const medications = require('./medications.json');
+const medications = require('./medicines.json');
 
 const getMedicationArrays = () => {
     let ids = [];
@@ -7,10 +7,12 @@ const getMedicationArrays = () => {
     let rates = [];
 
     return medications.map((medication) => {
-        ids.push(medication.id);
-        names.push(medication.name);
-        prices.push(medication.price);
-        rates.push(medication.rate);
+        return {
+            id: medication.id,
+            name: medication.name,
+            price: medication.price,
+            rate: medication.rate,
+        };
     });
 };
 

@@ -23,7 +23,7 @@ contract Laboratory is ERC1155, Ownable {
 
     mapping (uint256 => Medication) public medicationsData_; // Mapping to store medication data
 
-    constructor(string memory BaseURI, bytes32 pharmaciesMerkleRoot) ERC1155(BaseURI) Ownable(msg.sender) payable {
+    constructor(string memory BaseURI, bytes32 pharmaciesMerkleRoot) ERC1155(BaseURI) Ownable(msg.sender) {
         pharmaciesMerkleRoot_ = new Pharmacy(pharmaciesMerkleRoot);
     }
 
