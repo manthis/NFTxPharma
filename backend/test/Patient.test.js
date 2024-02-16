@@ -20,7 +20,7 @@ describe('Patient', function () {
 
         it('should have its merkleroot initialized', async function () {
             const { patient } = await loadFixture(deployContractFixture);
-            expect(await patient.patientsHexMerkleRoot_()).to.equal(getPatientsHexMerkleRoot());
+            expect(await patient.hexMerkleRoot_()).to.equal(getPatientsHexMerkleRoot());
         });
     });
 
@@ -28,14 +28,14 @@ describe('Patient', function () {
         it('should set merkle root as admin', async function () {
             const { patient } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            await patient.setPatientsMerkleRoot(newRoot);
-            expect(await patient.patientsHexMerkleRoot_()).to.equal(newRoot);
+            await patient.setMerkleRoot(newRoot);
+            expect(await patient.hexMerkleRoot_()).to.equal(newRoot);
         });
 
         it('should not set the merkle root if not an admin', async function () {
             const { patient, addrs } = await loadFixture(deployContractFixture);
             const newRoot = '0x0000000000000000000000000000000000000000000000000000000000000000';
-            expect(patient.connect(addrs[10]).setPatientsMerkleRoot(newRoot))
+            expect(patient.connect(addrs[10]).setMerkleRoot(newRoot))
                 .to.be.revertedWithCustomError(patient, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[10].address);
         });

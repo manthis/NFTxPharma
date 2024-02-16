@@ -3,39 +3,27 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "./User.sol";
+import "./extensions/IPharmacy.sol";
 
-/// @title Pharmacy Verification Contract
+/// @title Doctor Verification Contract
 /// @author Maxime AUBURTIN
-/// @notice This contract is used to verify pharmacies using a Merkle proof
-/// @dev This contract utilizes OpenZeppelin's MerkleProof library for the purpose of verification
+/// @notice This contract is used to verify doctors using a Merkle proof
+/// @dev This contract utilizes OpenZeppelin's MerkleProof library for verification
 /// @custom:security-contact maxime@auburt.in
-contract Pharmacy is Ownable {
+contract Pharmacy is IPharmacy, User {
 
-    /// @notice Hexadecimal Merkle root for pharmacies
-    /// @dev Stores the Merkle tree root used to verify pharmacies
-    bytes32 public pharmaciesHexMerkleRoot_;
+    /// @notice Constructor that initializes the Doctor contract with a specified Merkle hex root for doctors.
+    /// @dev Calls the User contract constructor with the provided hexMerkleRoot to set up the initial Merkle root for doctor verification.
+    /// @param hexMerkleRoot The Merkle hex root specifically for verifying doctors.
+    constructor(bytes32 hexMerkleRoot) User(hexMerkleRoot) {}
 
-    /// @notice Creates a new Pharmacy contract with a specified Merkle hex root
-    /// @dev Calls the Ownable constructor to establish contract ownership
-    /// @param pharmaciesHexMerkleRoot The Merkle hex root for pharmacies
-    constructor(bytes32 pharmaciesHexMerkleRoot) Ownable(msg.sender)  {
-        pharmaciesHexMerkleRoot_ = pharmaciesHexMerkleRoot;
+    /// @notice Verifies if a given address is a verified doctor.
+    /// @dev Utilizes the _isUser function from the User contract to check if the provided address, along with the Merkle proof, matches against the Merkle root for doctors.
+    /// @param account The address to verify as a doctor.
+    /// @param proof The Merkle proof that helps to verify if the address belongs to a doctor in the Merkle tree.
+    /// @return bool True if the address is verified as a doctor, false otherwise.
+    function isPharmacy(address account, bytes32[] calldata proof) external view returns (bool) {
+        return _isUser(account, proof);
     }
-
-    /// @notice Sets a new Merkle hex root for pharmacies
-    /// @dev Can only be called by the contract owner
-    /// @param pharmaciesHexMerkleRoot The new Merkle hex root for pharmacies
-    function setPharmacyMerkleRoot(bytes32 pharmaciesHexMerkleRoot) public virtual  {
-        pharmaciesHexMerkleRoot_ = pharmaciesHexMerkleRoot;
-    }
-
-    /// @notice Verifies whether a given address is a verified pharmacy
-    /// @dev Uses `MerkleProof.verify` to check if the address is in the Merkle tree
-    /// @param account The address to verify
-    /// @param proof The Merkle proof providing verification
-    /// @return bool True if the address is a verified pharmacy, false otherwise
-    function isPharmacy(address account, bytes32[] calldata proof) public view returns(bool) {
-        return MerkleProof.verify(proof, pharmaciesHexMerkleRoot_, keccak256(abi.encodePacked(account)));
-    }
-
 }
