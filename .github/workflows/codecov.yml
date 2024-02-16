@@ -1,4 +1,4 @@
-name: Upload coverage reports to Codecov
+name: Codecov coverage audit
 on: [push, pull_request]
 jobs:
     codecov:
