@@ -67,13 +67,6 @@ contract Laboratory is ERC1155, Ownable {
        emit MedicationDataUpdated(medicationId, name, price, rate);
     }
 
-    function setMedicationData(Medication[] memory medication) external onlyOwner {
-        for (uint256 i = 0; i < medication.length; i++) {
-            addOrUpdateMedicationData(medication[i].id, medication[i].name, medication[i].price, medication[i].rate);
-        }
-        emit MedicationListUpdated();
-    }
-
     /// @notice Retrieves medication data
     /// @param medicationId ID of the medication to retrieve data for
     /// @return name Name of the medication

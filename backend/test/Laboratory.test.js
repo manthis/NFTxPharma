@@ -48,7 +48,7 @@ describe('Laboratory', function () {
     describe('addOrUpdateMedicationData and getMedicationData', function () {
         it('should revert when not called by admin', async function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
-            expect(contract.connect(addrs[1]).addOrUpdateMedicationData(1, 'test', 1, 60))
+            await expect(contract.connect(addrs[1]).addOrUpdateMedicationData(1, 'test', 1, 60))
                 .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[1].address);
         });
@@ -69,30 +69,6 @@ describe('Laboratory', function () {
                 .to.emit(contract, 'MedicationDataUpdated')
                 .withArgs(1, 'test', 1, 60);
         });
-    });
-
-    describe('setMedicationData', function () {
-        it('should revert when not called by the owner', async function () {
-            const { contract, addrs } = await loadFixture(deployContractFixture);
-            await expect(contract.connect(addrs[1]).setMedicationData([]))
-                .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
-                .withArgs(addrs[1].address);
-        });
-
-        it('should set the mapping when called by the owner', async function () {
-            const { contract, addrs } = await loadFixture(deployContractFixture);
-            await expect(
-                contract.setMedicationData([
-                    { id: 1, name: 'test', price: 1, rate: 60 },
-                    { id: 2, name: 'test', price: 2, rate: 70 },
-                    { id: 3, name: 'test', price: 3, rate: 60 },
-                ]),
-            ).to.not.be.reverted;
-
-            expect(await contract.getMedicationData(1)).to.deep.equal([1, 'test', 1, 60]);
-        });
-
-        it('should emit a MedicationListUpdated event', async function () {});
     });
 
     describe('calculateTotalPrice', function () {
