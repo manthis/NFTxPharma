@@ -1,5 +1,6 @@
 "use client";
 
+import { ChakraProvider } from "@chakra-ui/react";
 import {
     RainbowKitProvider,
     darkTheme,
@@ -60,7 +61,7 @@ export function Providers({ children }) {
                     coolMode
                     theme={darkTheme({ accentColor: "#7b3fe4" })}
                 >
-                    {children}
+                    <ChakraProvider>{children}</ChakraProvider>
                 </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>

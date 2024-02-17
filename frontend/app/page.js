@@ -1,19 +1,15 @@
 'use client';
 
 import { AuthContextProvider } from '@/components/auth/AuthContext';
-import { Doctor } from '@/components/ui/Doctor';
 import { Header } from '@/components/ui/Header';
-import { Patient } from '@/components/ui/Patient';
-import { Pharmacy } from '@/components/ui/Pharmacy';
+import PrivateSection from '@/components/ui/Private';
 
 export default function Home() {
     return (
         <AuthContextProvider>
-            <main className='flex flex-col justify-center items-center h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen text-white'>
+            <main className='flex flex-col justify-center items-center min-h-[100svh] bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white'>
                 <Header />
-                <Patient />
-                <Doctor />
-                <Pharmacy />
+                <PrivateSection />
             </main>
         </AuthContextProvider>
     );
