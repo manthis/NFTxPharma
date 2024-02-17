@@ -4,6 +4,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 import "./extensions/IPharmacy.sol";
 
@@ -12,7 +13,10 @@ import "./extensions/IPharmacy.sol";
 /// @notice This contract manages medication data and minting of medication NFTs for pharmacies
 /// @dev Extends OpenZeppelin's ERC1155 for NFT functionality and Ownable for ownership management
 /// @custom:security-contact maxime@auburt.in
-contract Laboratory is ERC1155, Ownable {
+contract Laboratory is ERC1155, Ownable, ReentrancyGuard {
+
+    /// @notice Maximum number of items in the lists
+    uint256 public constant MAX_ITEMS = 100;
 
     /// @dev Reference to Pharmacy contract for pharmacy verification
     IPharmacy private pharmaContract_; 
@@ -87,6 +91,7 @@ contract Laboratory is ERC1155, Ownable {
     /// @return totalPrice Total price for the medications
     function calculateTotalPrice(uint256[] calldata medicineIds, uint256[] calldata amounts) public view returns (uint256) {
         require(medicineIds.length == amounts.length, "Arrays should have the same lengths!");
+        require(medicineIds.length <= MAX_ITEMS, "Max items limit reached!");
 
         uint256 totalPrice = 0;
         for (uint256 i = 0; i < medicineIds.length; i++) {
@@ -101,8 +106,9 @@ contract Laboratory is ERC1155, Ownable {
     /// @param medicineIds Array of medication IDs to mint
     /// @param amounts Array of amounts for each medication ID
     /// @param pharmacyProof Merkle proof to verify the calling pharmacy
-    function mintMedications(uint256[] calldata medicineIds, uint256[] calldata amounts, bytes32[] calldata pharmacyProof) external payable {
+    function mintMedications(uint256[] calldata medicineIds, uint256[] calldata amounts, bytes32[] calldata pharmacyProof) external payable nonReentrant() {
         require(pharmaContract_.isPharmacy(msg.sender, pharmacyProof), "Only pharmacies are allowed to mint!");
+        require(medicineIds.length <= MAX_ITEMS, "Max items limit reached!");
 
         uint256 totalPrice = calculateTotalPrice(medicineIds, amounts);
         require(msg.value >= totalPrice, "Unsufficient balance!");

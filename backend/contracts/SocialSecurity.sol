@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 import "./extensions/IDoctor.sol";
 import "./extensions/IPatient.sol";
@@ -17,7 +18,7 @@ import "./extensions/IPharmacy.sol";
 /// @notice This contract allows doctors to mint prescription NFTs (NFTxP) for patients, and patients to transfer these to pharmacies
 /// @dev Extends ERC721URIStorage for NFT metadata management and ERC721Burnable for burning functionality
 /// @custom:security-contact maxime@auburt.in
-contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable {
+contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable, ReentrancyGuard {
 
     using Strings for uint;
 
@@ -72,7 +73,7 @@ contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable {
     /// @param to Patient address to receive the NFTxP
     /// @param doctorsProof Merkle proof for doctor verification
     /// @param patientsProof Merkle proof for patient verification
-    function mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof) public {
+    function mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof) public nonReentrant() {
         require(doctors_.isDoctor(msg.sender, doctorsProof), 'Only doctors are allowed to mint prescriptions!');
         require(patients_.isPatient(to, patientsProof), 'Only patients can receive prescriptions!');
         

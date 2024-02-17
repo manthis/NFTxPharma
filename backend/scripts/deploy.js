@@ -11,10 +11,10 @@ const {
     getPharmaciesHexMerkleRoot,
 } = require('../test/whitelists/merkletrees');
 const { getMedicationArrays } = require('../test/medications/medications');
+const { NFTXP_BASEURI, NFTXM_BASEURI } = require('../scripts/constants');
 
 async function main() {
-    const NFTXP_BASEURI = 'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/'; // TODO to be edited
-    const NFTXM_BASEURI = 'ipfs://'; // TODO to be edited
+    console.log('Deploying contracts...');
 
     // Patient smart contract
     const PatientContract = await hre.ethers.getContractFactory('Patient');
@@ -55,6 +55,7 @@ async function main() {
     const medicationList = getMedicationArrays();
     let id, price, rate;
     let medicationListLength = medicationList.length;
+    console.log(`Medication listing initialization: ${medicationListLength} medications to be added!`);
     for (let i = 0; i < medicationListLength; i++) {
         id = medicationList[i].id;
         name = medicationList[i].name;
