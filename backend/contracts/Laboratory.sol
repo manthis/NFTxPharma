@@ -21,12 +21,15 @@ contract Laboratory is ERC1155, Ownable {
     event PharmacyContractAddressSet(address);
     /// @notice Emitted when medication data is updated
     event MedicationDataUpdated(uint256, string, uint256, uint256);
+    /// @notice Emitted when the whole medication list is updated
+    event MedicationListUpdated();
     /// @notice Emitted when a medication (NFTxM) is minted
     event MedicationMinted(uint256, address);
 
     /// @dev Struct to store medication data
     struct Medication {
         string name;
+        uint256 id;
         uint256 price;
         uint256 rate;
     }
@@ -41,6 +44,8 @@ contract Laboratory is ERC1155, Ownable {
         pharmaContract_ = IPharmacy(pharmaContractAddress);
     }
 
+    /// @notice Setter to define Pharmacy contract address
+    /// @param pharmaContractAddress Address of the pharmacy contract
     function setPharmacyContractAddress(address pharmaContractAddress) public onlyOwner {
         pharmaContract_ = IPharmacy(pharmaContractAddress);
         emit PharmacyContractAddressSet(pharmaContractAddress);
@@ -52,13 +57,21 @@ contract Laboratory is ERC1155, Ownable {
     /// @param name Name of the medication
     /// @param price Price of the medication
     /// @param rate Rate of the medication (could be related to dosage or strength)
-    function addOrUpdateMedicationData(uint256 medicationId, string memory name, uint256 price, uint256 rate) external onlyOwner {
+    function addOrUpdateMedicationData(uint256 medicationId, string memory name, uint256 price, uint256 rate) public onlyOwner {
        medicationsData_[medicationId] = Medication({
            name: name,
+           id: medicationId,
            price: price,
            rate: rate
        });
        emit MedicationDataUpdated(medicationId, name, price, rate);
+    }
+
+    function setMedicationData(Medication[] memory medication) external onlyOwner {
+        for (uint256 i = 0; i < medication.length; i++) {
+            addOrUpdateMedicationData(medication[i].id, medication[i].name, medication[i].price, medication[i].rate);
+        }
+        emit MedicationListUpdated();
     }
 
     /// @notice Retrieves medication data
@@ -66,8 +79,9 @@ contract Laboratory is ERC1155, Ownable {
     /// @return name Name of the medication
     /// @return price Price of the medication
     /// @return rate Rate of the medication
-    function getMedicationData(uint256 medicationId) external view returns (string memory, uint256, uint256) {
+    function getMedicationData(uint256 medicationId) external view returns (uint256, string memory, uint256, uint256) {
         return (
+            medicationsData_[medicationId].id, 
             medicationsData_[medicationId].name, 
             medicationsData_[medicationId].price, 
             medicationsData_[medicationId].rate

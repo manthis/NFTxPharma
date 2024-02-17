@@ -57,9 +57,10 @@ describe('Laboratory', function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
             await expect(contract.addOrUpdateMedicationData(1, 'test', 1, 60)).not.to.be.reverted;
             const result = await contract.getMedicationData(1);
-            expect(result[0]).to.equal('test');
-            expect(result[1]).to.equal(1);
-            expect(result[2]).to.equal(60);
+            expect(result[0]).to.equal(1);
+            expect(result[1]).to.equal('test');
+            expect(result[2]).to.equal(1);
+            expect(result[3]).to.equal(60);
         });
 
         it('should emit a MedicationDataUpdated event', async function () {
@@ -68,6 +69,30 @@ describe('Laboratory', function () {
                 .to.emit(contract, 'MedicationDataUpdated')
                 .withArgs(1, 'test', 1, 60);
         });
+    });
+
+    describe('setMedicationData', function () {
+        it('should revert when not called by the owner', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await expect(contract.connect(addrs[1]).setMedicationData([]))
+                .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
+                .withArgs(addrs[1].address);
+        });
+
+        it('should set the mapping when called by the owner', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await expect(
+                contract.setMedicationData([
+                    { id: 1, name: 'test', price: 1, rate: 60 },
+                    { id: 2, name: 'test', price: 2, rate: 70 },
+                    { id: 3, name: 'test', price: 3, rate: 60 },
+                ]),
+            ).to.not.be.reverted;
+
+            expect(await contract.getMedicationData(1)).to.deep.equal([1, 'test', 1, 60]);
+        });
+
+        it('should emit a MedicationListUpdated event', async function () {});
     });
 
     describe('calculateTotalPrice', function () {
