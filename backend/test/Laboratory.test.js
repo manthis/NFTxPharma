@@ -48,7 +48,7 @@ describe('Laboratory', function () {
     describe('addOrUpdateMedicationData and getMedicationData', function () {
         it('should revert when not called by admin', async function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
-            expect(contract.connect(addrs[1]).addOrUpdateMedicationData(1, 'test', 1, 60))
+            await expect(contract.connect(addrs[1]).addOrUpdateMedicationData(1, 'test', 1, 60))
                 .to.be.revertedWithCustomError(contract, 'OwnableUnauthorizedAccount')
                 .withArgs(addrs[1].address);
         });
@@ -57,9 +57,10 @@ describe('Laboratory', function () {
             const { contract, addrs } = await loadFixture(deployContractFixture);
             await expect(contract.addOrUpdateMedicationData(1, 'test', 1, 60)).not.to.be.reverted;
             const result = await contract.getMedicationData(1);
-            expect(result[0]).to.equal('test');
-            expect(result[1]).to.equal(1);
-            expect(result[2]).to.equal(60);
+            expect(result[0]).to.equal(1);
+            expect(result[1]).to.equal('test');
+            expect(result[2]).to.equal(1);
+            expect(result[3]).to.equal(60);
         });
 
         it('should emit a MedicationDataUpdated event', async function () {
@@ -91,6 +92,17 @@ describe('Laboratory', function () {
 
             await expect(contract.calculateTotalPrice([1, 1, 1], [1, 1])).to.be.revertedWith(
                 'Arrays should have the same lengths!',
+            );
+        });
+
+        it('should revert if provided arrays exceeds max items limit', async function () {
+            const { contract } = await loadFixture(deployContractFixture);
+
+            const medicineIdsArray = new Array(101).fill(1);
+            const quantitiesArray = new Array(101).fill(1);
+
+            await expect(contract.calculateTotalPrice(medicineIdsArray, quantitiesArray)).to.be.revertedWith(
+                'Max items limit reached!',
             );
         });
     });
@@ -218,6 +230,26 @@ describe('Laboratory', function () {
             )
                 .to.emit(contract, 'MedicationMinted')
                 .withArgs(totalPrice, pharmacy.address);
+        });
+
+        it('should revert if provided arrays exceeds items limit', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await contract.addOrUpdateMedicationData(1, 'test1', 1000, 60);
+            await contract.addOrUpdateMedicationData(2, 'test2', 6000, 75);
+            await contract.addOrUpdateMedicationData(3, 'test3', 9000, 60);
+            const pharmacy = addrs[13];
+
+            const medicineIdsArray = new Array(101).fill(1);
+            const quantitiesArray = new Array(101).fill(1);
+
+            const totalPrice = 100;
+            await expect(
+                contract
+                    .connect(pharmacy)
+                    .mintMedications(medicineIdsArray, quantitiesArray, getPharmaciesTreeProof(pharmacy.address), {
+                        value: totalPrice,
+                    }),
+            ).to.be.revertedWith('Max items limit reached!');
         });
     });
 });
