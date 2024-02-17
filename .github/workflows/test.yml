@@ -1,0 +1,29 @@
+name: Smart Contract Tests
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "18.x" # Ou '20.x' selon votre préférence
+                  cache: "yarn"
+                  cache-dependency-path: backend/yarn.lock # Assurez-vous que cette ligne pointe correctement vers votre fichier yarn.lock dans le sous-dossier
+            - name: Change directory to backend
+              run: cd backend
+            - name: Install dependencies
+              run: yarn install
+              working-directory: ./backend # Spécifie le répertoire de travail pour cette commande
+            - name: Run Hardhat tests
+              run: yarn hardhat test
+              working-directory: ./backend
