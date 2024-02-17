@@ -71,4 +71,6 @@ Lien vers la vidéo de démo:
 -   ChackrUI 2.2.0
 -   TailwindCSS
 
-### 3. Lien Vercel
+### 3. Link to the application
+
+The dApp is hosted on [Vercel](https://vercel.com/). Please click here: [https://nf-tx-pharma.vercel.app/](https://nf-tx-pharma.vercel.app/)
