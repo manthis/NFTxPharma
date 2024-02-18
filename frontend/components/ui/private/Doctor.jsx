@@ -24,15 +24,16 @@ import {
     Tr,
     useToast,
 } from "@chakra-ui/react";
+import { NFTStorage } from "nft.storage";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount, useWriteContract } from "wagmi";
 
 export const Doctor = () => {
-    const [medicineID, setMedicineID] = useState(null);
+    const [medicineID, setMedicineID] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [medicineList, setMedicineList] = useState([]);
-    const [patientAddress, setPatientAddress] = useState(null);
+    const [patientAddress, setPatientAddress] = useState("");
     const { writeContract } = useWriteContract({
         mutation: {
             onSuccess: () => {
@@ -69,30 +70,48 @@ export const Doctor = () => {
             (medication) => medication.id == medicineID
         );
 
-        const result = [medicationToAdd, quantity];
         if (medicationToAdd) {
+            medicationToAdd.quantity = quantity;
             setMedicineList((currentMedicineList) => [
                 ...currentMedicineList,
-                result,
+                medicationToAdd,
             ]);
         }
     }
 
-    function onSend() {
-        // TODO créer les NFT sur IPFS avec nft.storage
-        /**
-         * Il faut récupérer le dernier TokenMinted event ayant l'adresse du patient pour avoir le tokenID et le FullURI
-         * Il faut envoyer le FullURI sur IPFS avec nft.storage (attention il risque peut etre d'y avoir un problème et il faudra modifier
-         * le contrat pour spécifier la fonction mintPrescription afin de lui passer un tokenId plutot qu'elle en crée un en incrémentant
-         * le compteur de token, le problème c'est que le tokenId est censé etre un uint256 et non une string)
-         * Je pense qu'il est mieux de faire le stockage sur IPFS avant d'appeler la fonction mintPrescription
-         *
-         * => en fait il faut ajouter un paramètre à mintPrescription qui soit un string memory uri qui soit set à la place de tokenFullURI
-         * dans la fonction
-         */
-
+    async function onSend() {
         if (medicineList.length !== 0) {
             let tokenURI = "";
+            const client = new NFTStorage({
+                token: process.env.NEXT_PUBLIC_NFTSTORAGE_API_KEY,
+            });
+
+            const medicineListJson = JSON.stringify(medicineList);
+            // console.log(medicineListJson);
+
+            // We must send the file to IPFS
+
+            const metadata = await client.store({
+                name: "NFTxP",
+                description: "ERC721 Prescription metadata.",
+                image: new File(["<DATA>"], "nftxp.png", {
+                    type: "image/png",
+                }),
+                properties: {
+                    custom: "Custom data",
+                    file: new File([medicineListJson], "prescription.json", {
+                        type: "application/json",
+                    }),
+                },
+            });
+
+            tokenURI = metadata?.url;
+            console.log("IPFS URL for the metadata:", tokenURI);
+            console.log("metadata.json contents:\n", metadata.data);
+            console.log(
+                "metadata.json contents with IPFS gateway URLs:\n",
+                metadata.embed()
+            );
 
             writeContract({
                 address:
@@ -127,14 +146,13 @@ export const Doctor = () => {
         );
     });
 
-    const medicationList = medicineList.map((medication) => {
-        // TODO decide if we want the unit price or the total
+    const medicationList = medicineList?.map((medication) => {
         return (
-            <Tr key={medication[0].id}>
-                <Td>{medication[0].id}</Td>
-                <Td>{medication[0].name}</Td>
-                <Td>{medication[1]}</Td>
-                <Td>{medication[0].price * medication[1]} wei</Td>
+            <Tr key={medication.id}>
+                <Td>{medication.id}</Td>
+                <Td>{medication.name}</Td>
+                <Td>{medication.quantity}</Td>
+                <Td>{medication.price} wei</Td>
             </Tr>
         );
     });

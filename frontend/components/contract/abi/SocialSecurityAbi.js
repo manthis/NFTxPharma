@@ -458,6 +458,11 @@ export const SocialSecurityAbi = [
                 type: 'address',
             },
             {
+                internalType: 'string',
+                name: 'uri',
+                type: 'string',
+            },
+            {
                 internalType: 'bytes32[]',
                 name: 'doctorsProof',
                 type: 'bytes32[]',
