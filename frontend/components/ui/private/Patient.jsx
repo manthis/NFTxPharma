@@ -40,6 +40,7 @@ export const Patient = () => {
                 setPrescriptions(filteredPrescriptions);
                 setNbNFT(nbNFT - 1);
                 setSelectedId(null);
+                setTokenIds([]);
                 setSelections({});
 
                 toast({
