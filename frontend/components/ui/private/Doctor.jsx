@@ -86,11 +86,9 @@ export const Doctor = () => {
                 token: process.env.NEXT_PUBLIC_NFTSTORAGE_API_KEY,
             });
 
+            // We must send the file to IPFS
             const medicineListJson = JSON.stringify(medicineList);
             // console.log(medicineListJson);
-
-            // We must send the file to IPFS
-
             const metadata = await client.store({
                 name: "NFTxP",
                 description: "ERC721 Prescription metadata.",
@@ -106,26 +104,36 @@ export const Doctor = () => {
             });
 
             tokenURI = metadata?.url;
-            console.log("IPFS URL for the metadata:", tokenURI);
-            console.log("metadata.json contents:\n", metadata.data);
-            console.log(
-                "metadata.json contents with IPFS gateway URLs:\n",
-                metadata.embed()
-            );
-
-            writeContract({
-                address:
-                    process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
-                account: address,
-                abi: SocialSecurityAbi,
-                functionName: "mintPrescription",
-                args: [
-                    patientAddress,
-                    tokenURI,
-                    getDoctorsTreeProof(address),
-                    getPatientsTreeProof(patientAddress),
-                ],
-            });
+            if (tokenURI) {
+                /*
+                    console.log("IPFS URL for the metadata:", tokenURI);
+                    console.log("metadata.json contents:\n", metadata.data);
+                    console.log(
+                        "metadata.json contents with IPFS gateway URLs:\n",
+                        metadata.embed()
+                    );
+                */
+                writeContract({
+                    address:
+                        process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
+                    account: address,
+                    abi: SocialSecurityAbi,
+                    functionName: "mintPrescription",
+                    args: [
+                        patientAddress,
+                        tokenURI,
+                        getDoctorsTreeProof(address),
+                        getPatientsTreeProof(patientAddress),
+                    ],
+                });
+            } else {
+                toast({
+                    title: "Impossible d'envoyer l'ordonnance.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
         } else {
             toast({
                 title: "Aucun médicament dans l'ordonnance.",
