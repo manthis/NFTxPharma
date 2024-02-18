@@ -79,7 +79,21 @@ export const Doctor = () => {
     }
 
     function onSend() {
+        // TODO créer les NFT sur IPFS avec nft.storage
+        /**
+         * Il faut récupérer le dernier TokenMinted event ayant l'adresse du patient pour avoir le tokenID et le FullURI
+         * Il faut envoyer le FullURI sur IPFS avec nft.storage (attention il risque peut etre d'y avoir un problème et il faudra modifier
+         * le contrat pour spécifier la fonction mintPrescription afin de lui passer un tokenId plutot qu'elle en crée un en incrémentant
+         * le compteur de token, le problème c'est que le tokenId est censé etre un uint256 et non une string)
+         * Je pense qu'il est mieux de faire le stockage sur IPFS avant d'appeler la fonction mintPrescription
+         *
+         * => en fait il faut ajouter un paramètre à mintPrescription qui soit un string memory uri qui soit set à la place de tokenFullURI
+         * dans la fonction
+         */
+
         if (medicineList.length !== 0) {
+            let tokenURI = "";
+
             writeContract({
                 address:
                     process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
@@ -88,6 +102,7 @@ export const Doctor = () => {
                 functionName: "mintPrescription",
                 args: [
                     patientAddress,
+                    tokenURI,
                     getDoctorsTreeProof(address),
                     getPatientsTreeProof(patientAddress),
                 ],
@@ -100,10 +115,6 @@ export const Doctor = () => {
                 isClosable: true,
             });
         }
-
-        /**/
-        // Add code here to send NFTxP
-        // mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof)
     }
 
     // We get the medications available for the select component
