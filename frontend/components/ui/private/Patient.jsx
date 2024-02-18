@@ -1,9 +1,12 @@
 import { SocialSecurityAbi } from "@/components/contract/abi/SocialSecurityAbi";
 import { config } from "@/components/contract/config";
 import {
+    getPatientsTreeProof,
+    getPharmaciesTreeProof,
+} from "@/components/contract/whitelists/merkletrees";
+import {
     Button,
     Divider,
-    FormControl,
     Select,
     Table,
     TableCaption,
@@ -14,27 +17,68 @@ import {
     Th,
     Thead,
     Tr,
+    useToast,
 } from "@chakra-ui/react";
 import { readContract } from "@wagmi/core";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useAccount } from "wagmi";
+import { useAccount, useWriteContract } from "wagmi";
 
 export const Patient = () => {
-    const { handleSubmit } = useForm();
     const { address, isConnected } = useAccount();
     const [nbNFT, setNbNFT] = useState(0);
     const [tokenIds, setTokenIds] = useState([]);
     const [prescriptions, setPrescriptions] = useState([]);
+    const [selections, setSelections] = useState({});
+    const toast = useToast();
+    const { writeContract } = useWriteContract({
+        mutation: {
+            onSuccess: () => {
+                // delete selection from state
+                setNbNFT(nbNFT - 1);
+
+                toast({
+                    title: "Ordonnance envoyée",
+                    status: "info",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            },
+            onError: (error) => {
+                toast({
+                    title: error.message,
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            },
+        },
+    });
+
     const parameters = {
         abi: SocialSecurityAbi,
         account: address,
         address: process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
     };
 
-    function onSubmit() {
-        console.log("submit");
-    }
+    const handleSelectChange = (tokenId, value) => {
+        setSelections((prev) => ({ ...prev, [tokenId]: value }));
+    };
+
+    const handleSendClick = async (tokenId) => {
+        const pharmarcyAddress = selections[tokenId];
+        console.log("Token ID:", tokenId, "Sélection:", pharmarcyAddress);
+
+        writeContract({
+            ...parameters,
+            functionName: "transferToPharmacy",
+            args: [
+                getPatientsTreeProof(address),
+                pharmarcyAddress,
+                getPharmaciesTreeProof(pharmarcyAddress),
+                tokenId,
+            ],
+        });
+    };
 
     useEffect(() => {
         if (!address) return;
@@ -55,7 +99,7 @@ export const Patient = () => {
         if (nbNFT > 0) {
             const fetchTokenId = async () => {
                 for (let i = 0; i < nbNFT; i++) {
-                    const result = await readContract(config, {
+                    const id = await readContract(config, {
                         ...parameters,
                         functionName: "tokenOfOwnerByIndex",
                         args: [address, i],
@@ -64,13 +108,13 @@ export const Patient = () => {
                     const uri = await readContract(config, {
                         ...parameters,
                         functionName: "tokenURI",
-                        args: [result],
+                        args: [id],
                     });
 
                     setTokenIds((tokenUris) => [
                         ...tokenUris,
                         {
-                            tokenId: result,
+                            tokenId: id,
                             tokenURI: uri,
                         },
                     ]);
@@ -78,7 +122,7 @@ export const Patient = () => {
             };
             fetchTokenId();
         }
-    }, [nbNFT, address]);
+    }, [nbNFT]);
 
     useEffect(() => {
         if (tokenIds.length > 0) {
@@ -106,28 +150,32 @@ export const Patient = () => {
                 <a href={tokenInfo.tokenURI}>Cliquez ici</a>
             </Td>
             <Td>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <FormControl>
-                        <div className="flex flex-row items-center justify-between space-x-4">
-                            <Select
-                                placeholder="Pharmacie"
-                                size={"xs"}
-                                isRequired
-                            >
-                                <option value="1">
-                                    0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec
-                                </option>
-                            </Select>
-                            <Button
-                                colorScheme="whatsapp"
-                                size="xs"
-                                type="submit"
-                            >
-                                Envoyer
-                            </Button>
-                        </div>
-                    </FormControl>
-                </form>
+                <div className="flex flex-row items-center justify-between space-x-4">
+                    <Select
+                        placeholder="Pharmacie"
+                        size={"xs"}
+                        isRequired
+                        onChange={(e) =>
+                            handleSelectChange(
+                                tokenInfo.tokenId,
+                                e.target.value
+                            )
+                        }
+                    >
+                        <option value="0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec">
+                            0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec
+                        </option>
+                    </Select>
+                    <Button
+                        colorScheme="whatsapp"
+                        size="xs"
+                        onClick={() => {
+                            handleSendClick(tokenInfo.tokenId);
+                        }}
+                    >
+                        Envoyer
+                    </Button>
+                </div>
             </Td>
         </Tr>
     ));
