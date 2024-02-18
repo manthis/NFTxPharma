@@ -73,17 +73,14 @@ contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
     /// @param to Patient address to receive the NFTxP
     /// @param doctorsProof Merkle proof for doctor verification
     /// @param patientsProof Merkle proof for patient verification
-    function mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof) public nonReentrant() {
+    function mintPrescription(address to, string memory uri, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof) public nonReentrant() {
         require(doctors_.isDoctor(msg.sender, doctorsProof), 'Only doctors are allowed to mint prescriptions!');
         require(patients_.isPatient(to, patientsProof), 'Only patients can receive prescriptions!');
         
         _safeMint(to, tokenId_);
+        _setTokenURI(tokenId_, uri);
 
-        string memory tokenFullURI = string(abi.encodePacked(baseURI_, tokenId_.toString(), ".json"));
-        _setTokenURI(tokenId_, tokenFullURI);
-
-        emit TokenMinted(tokenId_, to, tokenFullURI);
-
+        emit TokenMinted(tokenId_, to, uri);
         tokenId_ += 1;
     }
 
