@@ -29,12 +29,18 @@ export const Patient = () => {
     const [tokenIds, setTokenIds] = useState([]);
     const [prescriptions, setPrescriptions] = useState([]);
     const [selections, setSelections] = useState({});
+    const [selectedId, setSelectedId] = useState(null);
     const toast = useToast();
     const { writeContract } = useWriteContract({
         mutation: {
             onSuccess: () => {
-                // delete selection from state
+                const filteredPrescriptions = prescriptions.filter(
+                    (prescription) => prescription.tokenId !== selectedId
+                );
+                setPrescriptions(filteredPrescriptions);
                 setNbNFT(nbNFT - 1);
+                setSelectedId(null);
+                setSelections({});
 
                 toast({
                     title: "Ordonnance envoyée",
@@ -62,6 +68,7 @@ export const Patient = () => {
 
     const handleSelectChange = (tokenId, value) => {
         setSelections((prev) => ({ ...prev, [tokenId]: value }));
+        setSelectedId(tokenId);
     };
 
     const handleSendClick = async (tokenId) => {
@@ -141,7 +148,7 @@ export const Patient = () => {
                 }
             });
         }
-    }, [tokenIds]);
+    }, [tokenIds, prescriptions]);
 
     const prescToDisplay = prescriptions.map((tokenInfo, index) => (
         <Tr key={index}>
