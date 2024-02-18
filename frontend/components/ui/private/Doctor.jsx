@@ -24,15 +24,16 @@ import {
     Tr,
     useToast,
 } from "@chakra-ui/react";
+import { NFTStorage } from "nft.storage";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount, useWriteContract } from "wagmi";
 
 export const Doctor = () => {
-    const [medicineID, setMedicineID] = useState(null);
+    const [medicineID, setMedicineID] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [medicineList, setMedicineList] = useState([]);
-    const [patientAddress, setPatientAddress] = useState(null);
+    const [patientAddress, setPatientAddress] = useState("");
     const { writeContract } = useWriteContract({
         mutation: {
             onSuccess: () => {
@@ -69,29 +70,71 @@ export const Doctor = () => {
             (medication) => medication.id == medicineID
         );
 
-        const result = [medicationToAdd, quantity];
         if (medicationToAdd) {
+            medicationToAdd.quantity = quantity;
             setMedicineList((currentMedicineList) => [
                 ...currentMedicineList,
-                result,
+                medicationToAdd,
             ]);
         }
     }
 
-    function onSend() {
+    async function onSend() {
         if (medicineList.length !== 0) {
-            writeContract({
-                address:
-                    process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
-                account: address,
-                abi: SocialSecurityAbi,
-                functionName: "mintPrescription",
-                args: [
-                    patientAddress,
-                    getDoctorsTreeProof(address),
-                    getPatientsTreeProof(patientAddress),
-                ],
+            let tokenURI = "";
+            const client = new NFTStorage({
+                token: process.env.NEXT_PUBLIC_NFTSTORAGE_API_KEY,
             });
+
+            // We must send the file to IPFS
+            const medicineListJson = JSON.stringify(medicineList);
+            // console.log(medicineListJson);
+            const metadata = await client.store({
+                name: "NFTxP",
+                description: "ERC721 Prescription metadata.",
+                image: new File(["<DATA>"], "nftxp.png", {
+                    type: "image/png",
+                }),
+                properties: {
+                    custom: "Custom data",
+                    file: new File([medicineListJson], "prescription.json", {
+                        type: "application/json",
+                    }),
+                },
+            });
+
+            tokenURI = metadata.embed().properties.file.href;
+            if (tokenURI) {
+                /*
+                    console.log("IPFS URL for the metadata:", tokenURI);
+                    console.log("metadata.json contents:\n", metadata.data);
+                    console.log(
+                        "metadata.json contents with IPFS gateway URLs:\n",
+                        metadata.embed()
+                    );
+                */
+
+                writeContract({
+                    address:
+                        process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,
+                    account: address,
+                    abi: SocialSecurityAbi,
+                    functionName: "mintPrescription",
+                    args: [
+                        patientAddress,
+                        tokenURI,
+                        getDoctorsTreeProof(address),
+                        getPatientsTreeProof(patientAddress),
+                    ],
+                });
+            } else {
+                toast({
+                    title: "Impossible d'envoyer l'ordonnance.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
         } else {
             toast({
                 title: "Aucun médicament dans l'ordonnance.",
@@ -100,10 +143,6 @@ export const Doctor = () => {
                 isClosable: true,
             });
         }
-
-        /**/
-        // Add code here to send NFTxP
-        // mintPrescription(address to, bytes32[] calldata doctorsProof, bytes32[] calldata patientsProof)
     }
 
     // We get the medications available for the select component
@@ -116,14 +155,13 @@ export const Doctor = () => {
         );
     });
 
-    const medicationList = medicineList.map((medication) => {
-        // TODO decide if we want the unit price or the total
+    const medicationList = medicineList?.map((medication) => {
         return (
-            <Tr key={medication[0].id}>
-                <Td>{medication[0].id}</Td>
-                <Td>{medication[0].name}</Td>
-                <Td>{medication[1]}</Td>
-                <Td>{medication[0].price * medication[1]} wei</Td>
+            <Tr key={medication.id}>
+                <Td>{medication.id}</Td>
+                <Td>{medication.name}</Td>
+                <Td>{medication.quantity}</Td>
+                <Td>{medication.price} wei</Td>
             </Tr>
         );
     });

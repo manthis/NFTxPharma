@@ -28,7 +28,7 @@ describe('SocialSecurity', function () {
         // Social Security contract
         const SocialSecurityContract = await ethers.getContractFactory('SocialSecurity');
         const socialSecurityContract = await SocialSecurityContract.deploy(
-            'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/',
+            'url',
             doctorContract.target,
             patientContract.target,
             pharmacyContract.target,
@@ -50,6 +50,7 @@ describe('SocialSecurity', function () {
             await expect(
                 contract.mintPrescription(
                     addrs[7].address,
+                    'url',
                     getDoctorsTreeProof(owner.address),
                     getPatientsTreeProof(addrs[7].address),
                 ),
@@ -63,10 +64,25 @@ describe('SocialSecurity', function () {
                     .connect(addrs[1])
                     .mintPrescription(
                         addrs[7].address,
+                        'url',
                         getDoctorsTreeProof(addrs[1].address),
                         getPatientsTreeProof(addrs[7].address),
                     ),
             ).not.to.be.reverted;
+        });
+
+        it('should transfer patient one nft', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await contract
+                .connect(addrs[1])
+                .mintPrescription(
+                    addrs[7].address,
+                    'url',
+                    getDoctorsTreeProof(addrs[1].address),
+                    getPatientsTreeProof(addrs[7].address),
+                );
+
+            expect(await contract.balanceOf(addrs[7].address)).to.equal(1);
         });
 
         it('should fail if "to" is not a patient', async function () {
@@ -76,6 +92,7 @@ describe('SocialSecurity', function () {
                     .connect(addrs[1])
                     .mintPrescription(
                         owner.address,
+                        'url',
                         getDoctorsTreeProof(addrs[1].address),
                         getPatientsTreeProof(owner.address),
                     ),
@@ -91,6 +108,7 @@ describe('SocialSecurity', function () {
                 .connect(addrs[1])
                 .mintPrescription(
                     addrs[7].address,
+                    'url',
                     getDoctorsTreeProof(addrs[1].address),
                     getPatientsTreeProof(addrs[7].address),
                 );
@@ -100,6 +118,7 @@ describe('SocialSecurity', function () {
                 .connect(addrs[1])
                 .mintPrescription(
                     addrs[7].address,
+                    'url',
                     getDoctorsTreeProof(addrs[1].address),
                     getPatientsTreeProof(addrs[7].address),
                 );
@@ -116,6 +135,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -134,12 +154,13 @@ describe('SocialSecurity', function () {
                     .connect(doctor)
                     .mintPrescription(
                         patient.address,
+                        'url',
                         getDoctorsTreeProof(doctor.address),
                         getPatientsTreeProof(patient.address),
                     ),
             )
                 .to.emit(contract, 'TokenMinted')
-                .withArgs(0, patient.address, 'ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/0.json');
+                .withArgs(0, patient.address, 'url');
         });
     });
 
@@ -154,6 +175,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -179,6 +201,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -207,6 +230,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -234,6 +258,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -261,6 +286,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -288,6 +314,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
@@ -319,17 +346,18 @@ describe('SocialSecurity', function () {
                 .connect(addrs[1])
                 .mintPrescription(
                     addrs[7].address,
+                    'url',
                     getDoctorsTreeProof(addrs[1].address),
                     getPatientsTreeProof(addrs[7].address),
                 );
-            expect(await contract.tokenURI(0)).to.equal('ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/0.json');
+            expect(await contract.tokenURI(0)).to.equal('url');
         });
     });
 
     describe('BaseURI', function () {
         it('should have a BaseURI set on initialization', async function () {
             const { contract } = await loadFixture(deployContractFixture);
-            expect(await contract.getBaseURI()).to.equal('ipfs://QmV9w4bXjS5k5JLs5mZ6q2sQwqNqZc2y4HnF7f4b7v4b7/');
+            expect(await contract.getBaseURI()).to.equal('url');
         });
 
         it('should be set when done by admin', async function () {
@@ -362,6 +390,7 @@ describe('SocialSecurity', function () {
                 .connect(doctor)
                 .mintPrescription(
                     patient.address,
+                    'url',
                     getDoctorsTreeProof(doctor.address),
                     getPatientsTreeProof(patient.address),
                 );
