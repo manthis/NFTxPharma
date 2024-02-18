@@ -14,21 +14,19 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
-import {
-    arbitrum,
-    base,
-    hardhat,
-    mainnet,
-    optimism,
-    polygon,
-    sepolia,
-    zora,
-} from "wagmi/chains";
+import { hardhat, sepolia } from "wagmi/chains";
 
 const { wallets } = getDefaultWallets();
 
+let networks = [];
+if (process.env.NODE_ENV === "production") {
+    networks.push(sepolia);
+} else {
+    networks.push(hardhat);
+}
+
 const config = getDefaultConfig({
-    appName: "RainbowKit demo",
+    appName: "PharmaxNFT",
     projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     wallets: [
         ...wallets,
@@ -37,17 +35,7 @@ const config = getDefaultConfig({
             wallets: [argentWallet, trustWallet, ledgerWallet],
         },
     ],
-    chains: [
-        mainnet,
-        polygon,
-        optimism,
-        arbitrum,
-        base,
-        zora,
-        ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-            ? [sepolia, hardhat]
-            : []),
-    ],
+    chains: networks,
     ssr: true,
 });
 
