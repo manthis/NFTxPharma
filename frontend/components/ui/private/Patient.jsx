@@ -66,7 +66,14 @@ export const Patient = () => {
                         functionName: "tokenURI",
                         args: [result],
                     });
-                    setTokenIds((tokenUris) => [...tokenUris, uri]);
+
+                    setTokenIds((tokenUris) => [
+                        ...tokenUris,
+                        {
+                            tokenId: result,
+                            tokenURI: uri,
+                        },
+                    ]);
                 }
             };
             fetchTokenId();
@@ -75,20 +82,28 @@ export const Patient = () => {
 
     useEffect(() => {
         if (tokenIds.length > 0) {
-            tokenIds.forEach((tokenURI) => {
-                setPrescriptions((prescriptions) => [
-                    ...prescriptions,
-                    tokenURI,
-                ]);
+            tokenIds.forEach((tokenInfo) => {
+                const tokenIDToFind = tokenInfo.tokenId;
+
+                // Look for the tokenIDToFind in prescriptions
+                const tokenIndex = prescriptions.findIndex(
+                    (token) => token.tokenId == tokenIDToFind
+                );
+                if (tokenIndex === -1) {
+                    setPrescriptions((tokenInfos) => [
+                        ...tokenInfos,
+                        tokenInfo,
+                    ]);
+                }
             });
         }
     }, [tokenIds]);
 
-    const prescToDisplay = prescriptions.map((prescription, index) => (
+    const prescToDisplay = prescriptions.map((tokenInfo, index) => (
         <Tr key={index}>
-            <Td>{index}</Td>
+            <Td>{tokenInfo.tokenId.toString()}</Td>
             <Td>
-                <a href={prescription}>Cliquez ici</a>
+                <a href={tokenInfo.tokenURI}>Cliquez ici</a>
             </Td>
             <Td>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -103,7 +118,11 @@ export const Patient = () => {
                                     0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec
                                 </option>
                             </Select>
-                            <Button colorScheme="whatsapp" size="xs">
+                            <Button
+                                colorScheme="whatsapp"
+                                size="xs"
+                                type="submit"
+                            >
                                 Envoyer
                             </Button>
                         </div>
@@ -154,7 +173,7 @@ export const Patient = () => {
                         <Tbody>
                             <Tr>
                                 <Td>548768768</Td>
-                                <Td>Paracétamol</Td>
+                                <Td>0x1CBd...3C9Ec</Td>
                                 <Td isNumeric>100 wei</Td>
                                 <Td>
                                     <Button colorScheme="red" size="xs">
@@ -164,7 +183,7 @@ export const Patient = () => {
                             </Tr>
                             <Tr>
                                 <Td>548768456</Td>
-                                <Td>Doliprane</Td>
+                                <Td>0x1CBd...3C9Ec</Td>
                                 <Td isNumeric>1000 wei</Td>
                                 <Td>
                                     <Button colorScheme="red" size="xs">
@@ -174,7 +193,7 @@ export const Patient = () => {
                             </Tr>
                             <Tr>
                                 <Td>567987682</Td>
-                                <Td>Viagra</Td>
+                                <Td>0x1CBd...3C9Ec</Td>
                                 <Td isNumeric>5000 wei</Td>
                                 <Td>
                                     <Button colorScheme="red" size="xs">
