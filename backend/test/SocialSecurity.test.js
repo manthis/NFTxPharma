@@ -71,6 +71,20 @@ describe('SocialSecurity', function () {
             ).not.to.be.reverted;
         });
 
+        it('should transfer patient one nft', async function () {
+            const { contract, addrs } = await loadFixture(deployContractFixture);
+            await contract
+                .connect(addrs[1])
+                .mintPrescription(
+                    addrs[7].address,
+                    'url',
+                    getDoctorsTreeProof(addrs[1].address),
+                    getPatientsTreeProof(addrs[7].address),
+                );
+
+            expect(await contract.balanceOf(addrs[7].address)).to.equal(1);
+        });
+
         it('should fail if "to" is not a patient', async function () {
             const { contract, owner, addrs } = await loadFixture(deployContractFixture);
             await expect(

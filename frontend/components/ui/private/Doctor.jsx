@@ -103,7 +103,7 @@ export const Doctor = () => {
                 },
             });
 
-            tokenURI = metadata?.url;
+            tokenURI = metadata.embed().properties.file.href;
             if (tokenURI) {
                 /*
                     console.log("IPFS URL for the metadata:", tokenURI);
@@ -113,6 +113,7 @@ export const Doctor = () => {
                         metadata.embed()
                     );
                 */
+
                 writeContract({
                     address:
                         process.env.NEXT_PUBLIC_CONTRACT_SOCIALSECURITY_ADDRESS,

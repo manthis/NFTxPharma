@@ -3,10 +3,12 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
 
 import "./extensions/IDoctor.sol";
 import "./extensions/IPatient.sol";
@@ -18,7 +20,7 @@ import "./extensions/IPharmacy.sol";
 /// @notice This contract allows doctors to mint prescription NFTs (NFTxP) for patients, and patients to transfer these to pharmacies
 /// @dev Extends ERC721URIStorage for NFT metadata management and ERC721Burnable for burning functionality
 /// @custom:security-contact maxime@auburt.in
-contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable, ReentrancyGuard {
+contract SocialSecurity is ERC721URIStorage, ERC721Enumerable, ERC721Burnable, Ownable, ReentrancyGuard {
 
     using Strings for uint;
 
@@ -113,8 +115,23 @@ contract SocialSecurity is ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
 
     // The following function is an override required by Solidity.
 
-    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable, ERC721URIStorage) returns (bool) {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _update(address to, uint256 tokenId, address auth)
+        internal
+        override(ERC721, ERC721Enumerable)
+        returns (address)
+    {
+        return super._update(to, tokenId, auth);
+    }
+
+    function _increaseBalance(address account, uint128 value)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._increaseBalance(account, value);
     }
 
     // Disabled features for this ERC721
