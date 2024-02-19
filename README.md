@@ -71,7 +71,7 @@ Lien vers les vidéos de démo:
 -   Wagmi 2
 -   Viem 2
 -   RaibowKit 2
--   ChackrUI 2.2.0
+-   ChackraUI 2.2.0
 -   TailwindCSS
 
 ### 3. Link to the application
