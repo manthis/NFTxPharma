@@ -57,7 +57,10 @@ yarn hardhat run ./scripts/deploy --network [network_name]
 
 ### 1. Demo
 
-Lien vers la vidéo de démo:
+Lien vers les vidéos de démo:
+
+-   [Vidéo 1](https://www.loom.com/share/6fade7f6f4a34e6d9077f4be76c36587)
+-   [Vidéo 2](https://www.loom.com/share/40187df00c51441ab846129d9ee7eac0)
 
 ### 2. Overwiew (image et stack)
 
