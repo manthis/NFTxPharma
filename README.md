@@ -57,10 +57,10 @@ yarn hardhat run ./scripts/deploy --network [network_name]
 
 ### 1. Demo
 
-Lien vers les vidéos de démo:
+Links to the demo videos:
 
--   [Vidéo 1](https://www.loom.com/share/6fade7f6f4a34e6d9077f4be76c36587)
--   [Vidéo 2](https://www.loom.com/share/40187df00c51441ab846129d9ee7eac0)
+-   [Video 1](https://www.loom.com/share/6fade7f6f4a34e6d9077f4be76c36587)
+-   [Video 2](https://www.loom.com/share/40187df00c51441ab846129d9ee7eac0)
 
 ### 2. Overwiew (image et stack)
 
@@ -71,7 +71,7 @@ Lien vers les vidéos de démo:
 -   Wagmi 2
 -   Viem 2
 -   RaibowKit 2
--   ChackrUI 2.2.0
+-   ChackraUI 2.2.0
 -   TailwindCSS
 
 ### 3. Link to the application
